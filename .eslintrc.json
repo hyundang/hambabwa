@@ -7,8 +7,7 @@
     "node": true, // node 사용 OK
     "browser": true, // browser 인식 Ok
     "es6": true, // es6 버전사용 OK
-    "commonjs": true,
-    "jest": true
+    "commonjs": true
   },
   "plugins": [
     "@typescript-eslint",
@@ -81,7 +80,7 @@
     {
       "files": ["**/tests/**/*", "**/*.(spec|test).*"],
       "env": {
-        "jest/global": true
+        "jest": true
       },
       "plugins": ["jest-dom", "testing-library"],
       "extends": ["plugin:jest-dom/recommended", "plugin:testing-library/react"]

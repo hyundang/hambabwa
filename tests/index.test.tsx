@@ -5,7 +5,7 @@ import Home from "src/pages/index";
 
 describe("Home", () => {
   it("renders a heading", () => {
-    const { container } = render(<Home />);
+    const { container } = render(<Home data="hi"/>);
 
     const heading = screen.getByRole("heading", {
       name: /welcome to next\.js!/i,

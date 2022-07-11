@@ -18,6 +18,11 @@ exports[`Home renders a heading 1`] = `
           Next.js!
         </a>
       </h1>
+      <button
+        type="button"
+      >
+        hihi
+      </button>
       <p
         class="description"
       >
