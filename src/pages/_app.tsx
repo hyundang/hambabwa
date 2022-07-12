@@ -3,7 +3,7 @@ import type { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {
   if (process.env.NODE_ENV === "development") {
-    import("mocks");
+    import("src/mocks");
   }
 
   return <Component {...pageProps} />;
