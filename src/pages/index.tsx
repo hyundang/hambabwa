@@ -95,7 +95,7 @@ export const getServerSideProps = async () => {
     };
   } catch (e) {
     console.log("getServerSideProps Error : ", e);
-    return undefined;
+    return { props: {} };
   }
 };
 
