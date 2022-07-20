@@ -7,12 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:css": "stylelint \"src/**/*.{js,jsx,ts,tsx}\"",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "test": "jest --watch",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
+    "@svgr/webpack": "5.5.0",
     "axios": "^0.27.2",
     "next": "12.2.1",
     "react": "18.2.0",
@@ -20,7 +22,8 @@
     "react-query": "^3.39.1",
     "recoil": "^0.7.4",
     "styled-components": "^5.3.5",
-    "styled-normalize": "^8.0.7"
+    "styled-reset": "^4.4.2",
+    "url-loader": "^4.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",
@@ -29,6 +32,7 @@
     "@storybook/addon-interactions": "^6.5.9",
     "@storybook/addon-links": "^6.5.9",
     "@storybook/builder-webpack5": "^6.5.9",
+    "@storybook/jest": "^0.0.10",
     "@storybook/manager-webpack5": "^6.5.9",
     "@storybook/react": "^6.5.9",
     "@storybook/testing-library": "^0.0.13",
@@ -62,6 +66,12 @@
     "msw": "^0.43.1",
     "msw-storybook-addon": "^1.6.3",
     "prettier": "^2.7.1",
+    "react-docgen-typescript-loader": "^3.7.2",
+    "stylelint": "^14.9.1",
+    "stylelint-config-recommended": "^8.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.10.0",
+    "tsconfig-paths-webpack-plugin": "^3.5.2",
     "typescript": "4.7.4"
   },
   "msw": {

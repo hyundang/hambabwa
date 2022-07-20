@@ -1,7 +1,3 @@
-import { addDecorator } from "@storybook/react";
-// import { withThemesProvider } from "storybook-addon-styled-component-theme";
-import { ThemeProvider } from "styled-components";
-// import { theme } from "src/styles/theme";
 import { GlobalStyle } from "../src/styles/GlobalStyle";
 import { RecoilRoot } from "recoil";
 import { initialize, mswDecorator } from "msw-storybook-addon";
@@ -13,6 +9,7 @@ export const parameters = {
       color: /(background|color)$/i,
       date: /Date$/,
     },
+    expanded: true
   },
 };
 
@@ -31,6 +28,3 @@ export const decorators = [
   ),
   mswDecorator,
 ];
-
-// const Themes = [theme];
-// addDecorator(withThemesProvider(Themes), ThemeProvider);
