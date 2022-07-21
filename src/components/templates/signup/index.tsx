@@ -1,18 +1,29 @@
 import Image from "next/image";
 import { logoImg } from "src/assets";
-import { PageContainer, SignUpForm } from "src/components/organisms";
+import { PageContainer, SignForm } from "src/components/organisms";
+import { postSignInReqProps, postSignUpReqProps } from "src/types/user";
 import styled from "styled-components";
 
 interface SignUpProps {
-  onSignUp: (email: string, password: string, nickname: string) => void;
+  onSignUp: (params: postSignUpReqProps | postSignInReqProps) => void;
 }
 
 const SignUp = ({ onSignUp }: SignUpProps) => {
   return (
-    <PageContainer title="로그인">
+    <PageContainer title="회원가입">
       <SignUpContainer>
         <Image src={logoImg} alt="logo" width={129} height={123} priority />
-        <StyledSignUpForm onSignUp={onSignUp} />
+        <SignForm type="signup" onClickBtn={onSignUp}>
+          <SignUpFormWrap>
+            <FormWrap>
+              <SignForm.InputEmail />
+              <SignForm.InputPassword />
+              <SignForm.InputPasswordConfirm />
+              <SignForm.InputNickName />
+            </FormWrap>
+            <SignForm.ButtonSignup />
+          </SignUpFormWrap>
+        </SignForm>
       </SignUpContainer>
     </PageContainer>
   );
@@ -28,6 +39,18 @@ const SignUpContainer = styled.div`
   align-items: center;
 `;
 
-const StyledSignUpForm = styled(SignUpForm)`
+const SignUpFormWrap = styled.section`
+  width: 100%;
   margin-top: 77px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const FormWrap = styled.form`
+  width: 100%;
+  height: 203px;
+  margin-bottom: 37px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
