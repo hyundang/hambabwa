@@ -24,12 +24,16 @@ const SignInForm = ({
     password: "",
   });
   const [isEmailOkay, setIsEmailOkay] = useState(true);
-  const handleSignIn = () => {
+  const checkEmailFormat = () => {
     if (!emailCheck(email)) {
       setIsEmailOkay(false);
       setIsBtnActive(false);
-      return undefined;
+      return false;
     }
+    return true;
+  };
+  const handleSignIn = () => {
+    if (!checkEmailFormat()) return undefined;
     onSignIn(email, password);
     return undefined;
   };
@@ -38,8 +42,15 @@ const SignInForm = ({
   const handleSignUp = () => router.push("/signup");
 
   const [isBtnActive, setIsBtnActive] = useState(false);
-  useEffect(() => {
+  const checkBtnActive = () => {
     !!email && !!password ? setIsBtnActive(true) : setIsBtnActive(false);
+  };
+  const initializeInputError = () => {
+    setIsEmailOkay(true);
+  };
+  useEffect(() => {
+    checkBtnActive();
+    initializeInputError();
   }, [email, password]);
 
   return (

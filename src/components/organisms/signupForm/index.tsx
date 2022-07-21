@@ -21,17 +21,26 @@ const SignUpForm = ({ id, className, onSignUp }: SignUpFormProps) => {
   const [isEmailOkay, setIsEmailOkay] = useState(true);
   const [isPasswordOkay, setIsPasswordOkay] = useState(true);
   const [isNicknameOkay, setIsNicknameOkay] = useState(true);
-  const handleError = () => {
+
+  const checkPassword = () => {
     if (password !== passwordConfirm) {
       setIsPasswordOkay(false);
       setIsBtnActive(false);
       return false;
     }
+    return true;
+  };
+
+  const checkNickNameFormat = () => {
     if (nickname.length > 20) {
       setIsNicknameOkay(false);
       setIsBtnActive(false);
       return false;
     }
+    return true;
+  };
+
+  const checkEmailFormat = () => {
     if (!emailCheck(email)) {
       setIsEmailOkay(false);
       setIsBtnActive(false);
@@ -40,8 +49,15 @@ const SignUpForm = ({ id, className, onSignUp }: SignUpFormProps) => {
     return true;
   };
 
+  const checkDataFormat = () => {
+    const a = checkEmailFormat();
+    const b = checkPassword();
+    const c = checkNickNameFormat();
+    return a && b && c;
+  };
+
   const handleSignUp = () => {
-    if (!handleError()) return undefined;
+    if (!checkDataFormat()) return undefined;
     onSignUp(email, password, nickname);
     return undefined;
   };
