@@ -1,18 +1,31 @@
 import { createGlobalStyle } from "styled-components";
-import { normalize } from "styled-normalize";
+import { reset } from "styled-reset";
 import colorSystem from "./ColorSystem";
 
 export const GlobalStyle = createGlobalStyle`
-  ${normalize};
+  ${reset};
   ${colorSystem};
   html,
   body {
-    font-family: 'sans-serif';
+    font-family: "AppleSDGothicNeo", 'sans-serif';
     font-size: 10px;
+    font-weight: 400;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
+    appearance: none;
+    -webkit-appearance: none;
+    border: none;
+    border-radius: 0;
+    -webkit-border-radius: 0;
   }
   * {
     box-sizing: border-box;
-    font-family: 'sans-serif';
+    font-family:  "AppleSDGothicNeo", 'sans-serif';
+    font-size: 10px;
+    font-weight: 400;
+    appearance: none;
+    -webkit-appearance: none;
+    border: none;
+    border-radius: 0;
+    -webkit-border-radius: 0;
   }
 `;
