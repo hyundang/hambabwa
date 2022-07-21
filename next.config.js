@@ -23,10 +23,14 @@ const nextConfig = {
             ? JSON.stringify(process.env.API_URL)
             : JSON.stringify(process.env.DEV_API_URL),
       }),
-      new webpack.EnvironmentPlugin(["NODE_ENV"]),
+      new webpack.EnvironmentPlugin(["NODE_ENV"])
     );
 
     return config;
+  },
+  env: {
+    API_URL: process.env.API_URL,
+    DEV_API_URL: process.env.DEV_API_URL,
   },
 };
 
