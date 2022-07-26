@@ -11,9 +11,9 @@ import nextCookie from "next-cookies";
 const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }: AppProps) {
-  if (process.env.NODE_ENV === "development") {
-    import("src/mocks");
-  }
+  // if (process.env.NODE_ENV === "development") {
+  //   import("src/mocks");
+  // }
 
   return (
     <>
