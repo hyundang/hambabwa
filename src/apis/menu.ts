@@ -1,22 +1,16 @@
 import { menuTypes } from "src/types";
+import { apiRequest } from "src/utils";
 import client from "./client";
 
 const getMenuByCategory = async (
   categoryCode: string
-): Promise<menuTypes.getMenuByCategoryResProps[]> => {
-  try {
-    const {
-      data: { statusCode, message, data },
-    } = await client.get(`/menu/category/${categoryCode}`);
-    if (statusCode !== 200) {
-      console.log(message);
-      throw new Error(message);
-    }
-    return data;
-  } catch (e) {
-    console.log("[FAIL] get menu by category");
-    throw new Error("[FAIL] get menu by category");
-  }
+): Promise<menuTypes.menuItemProps[]> => {
+  const data = await apiRequest({
+    axios: client,
+    url: `/menu/category/${categoryCode}`,
+    type: "get",
+  });
+  return data;
 };
 
 const menuApi = {

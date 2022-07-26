@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
-import signupApi from "./signup";
+import authApi from "./auth";
 
 const client = axios.create({
   baseURL: `${API_DOMAIN}/api`,
@@ -8,7 +8,7 @@ const client = axios.create({
 
 client.interceptors.request.use(
   async (config: AxiosRequestConfig) => {
-    await signupApi.postRefresh();
+    await authApi.getRefresh();
     return config;
   },
   (error) => {
