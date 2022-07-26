@@ -21,7 +21,7 @@
     "eslint:recommended",
     "airbnb",
     "plugin:react/recommended",
-    "prettier", 
+    "prettier",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
@@ -63,7 +63,9 @@
     "testing-library/await-async-query": "error",
     "testing-library/no-await-sync-query": "error",
     "testing-library/no-debugging-utils": "warn",
-    "testing-library/no-dom-import": "off"
+    "testing-library/no-dom-import": "off",
+    "@typescript-eslint/no-namespace": "off",
+    "consistent-return": "off"
   },
   "settings": {
     "react": {
