@@ -1,11 +1,13 @@
 import Image from "next/image";
 import { logoImg } from "src/assets";
 import { PageContainer, SignForm } from "src/components/organisms";
-import { postSignInReqProps, postSignUpReqProps } from "src/types/user";
+import { authTypes } from "src/types";
 import styled from "styled-components";
 
 interface SignUpProps {
-  onSignUp: (params: postSignUpReqProps | postSignInReqProps) => void;
+  onSignUp: (
+    params: authTypes.postSignUpReqProps | authTypes.postSignInReqProps
+  ) => void;
 }
 
 const SignUp = ({ onSignUp }: SignUpProps) => {

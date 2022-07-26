@@ -11,7 +11,7 @@ import {
 import { Button } from "src/components/atoms";
 import { InputForm } from "src/components/molecules";
 import { useFormatCheck, useInputForm } from "src/hooks";
-import { postSignInReqProps, postSignUpReqProps } from "src/types/user";
+import { authTypes } from "src/types";
 import styled from "styled-components";
 
 interface ContextProps {
@@ -47,7 +47,9 @@ const SignFormContext = createContext<ContextProps>({
 SignFormContext.displayName = "SignFormContext";
 
 interface SignInFormProps extends HTMLAttributes<HTMLElement> {
-  onClickBtn: (params: postSignInReqProps | postSignUpReqProps) => void;
+  onClickBtn: (
+    params: authTypes.postSignInReqProps | authTypes.postSignUpReqProps
+  ) => void;
   type: "signin" | "signup";
 }
 const SignForm = ({
@@ -101,7 +103,7 @@ const SignForm = ({
     checkBtnActive();
     initializeInputState();
   }, [email, password, passwordConfirm, nickname]);
-  
+
   const value = useMemo(
     () => ({
       id,
