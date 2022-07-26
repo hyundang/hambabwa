@@ -1,24 +1,30 @@
 import axios from "axios";
-import { postSignUpReqProps, postSignUpResProps } from "src/types/user";
+import { authTypes } from "src/types";
 
 const postRefresh = async (): Promise<undefined> => {
   try {
-    await axios.post(`${API_DOMAIN}/api/auth/refresh`);
+    await axios.get(`${API_DOMAIN}/api/auth/refresh`);
     return undefined;
   } catch (e) {
-    console.log("fail refresh");
+    console.log("[FAIL] refresh");
     return undefined;
   }
 };
 
 const postSignUp = async (
-  body: postSignUpReqProps
-): Promise<postSignUpResProps | undefined> => {
+  body: authTypes.postSignUpReqProps
+): Promise<authTypes.postSignUpResProps | undefined> => {
   try {
-    const { data } = await axios.post(`${API_DOMAIN}/api/auth/signup`, body);
+    const {
+      data: { statusCode, message, data },
+    } = await axios.post(`${API_DOMAIN}/api/auth/signup`, body);
+    if (statusCode !== 200) {
+      console.log(message);
+      return undefined;
+    }
     return data;
   } catch (e) {
-    console.log("fail post signup");
+    console.log("[FAIL] post signup");
     return undefined;
   }
 };

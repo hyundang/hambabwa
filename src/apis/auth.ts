@@ -1,17 +1,20 @@
-import {
-  postSignInReqProps,
-  postSignInResProps,
-} from "src/types/user";
+import { authTypes } from "src/types";
 import client from "./client";
 
 const postSignIn = async (
-  body: postSignInReqProps
-): Promise<postSignInResProps | undefined> => {
+  body: authTypes.postSignInReqProps
+): Promise<authTypes.postSignInResProps | undefined> => {
   try {
-    const { data } = await client.post(`/auth/login`, body);
+    const {
+      data: { statusCode, message, data },
+    } = await client.post(`/auth/login`, body);
+    if (statusCode !== 200) {
+      console.log(message);
+      return undefined;
+    }
     return data;
   } catch (e) {
-    console.log("fail post signin");
+    console.log("[FAIL] post signin");
     return undefined;
   }
 };
