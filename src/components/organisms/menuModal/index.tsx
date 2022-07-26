@@ -4,7 +4,7 @@ import { menuTypes } from "src/types";
 import styled from "styled-components";
 
 interface MenuModalProps extends HTMLAttributes<HTMLDivElement> {
-  menuList: menuTypes.getMenuByCategoryResProps[];
+  menuList: menuTypes.menuItemProps[];
   selected: string[];
   onSelectMenu: (id: string) => () => void;
   onFinish: () => void;
@@ -31,13 +31,13 @@ const MenuModal = ({
       <ButtonWrap>
         {menuList.map((menu) => (
           <MenuButton
-            key={menu.code}
-            id={menu.code}
+            key={menu.id}
+            id={`${menu.id}`}
             isWhite
-            isActive={isSelected(menu.code)}
-            onClick={onSelectMenu(menu.code)}
+            isActive={isSelected(`${menu.id}`)}
+            onClick={onSelectMenu(`${menu.id}`)}
           >
-            {menu.title}
+            {menu.foodTitle}
           </MenuButton>
         ))}
       </ButtonWrap>
@@ -52,7 +52,6 @@ export default MenuModal;
 
 const MenuModalWrap = styled.dialog`
   all: unset;
-  width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   padding: 26px 16px 14px 16px;

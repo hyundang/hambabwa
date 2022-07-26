@@ -12,7 +12,7 @@ export interface selectedMenuProps {
 }
 export interface ChooseCategoryProps extends HTMLAttributes<HTMLDivElement> {
   categoryList: categoryTypes.getCategoryResProps[];
-  menuList: menuTypes.getMenuByCategoryResProps[];
+  menuList: menuTypes.menuItemProps[];
   selectedCategory: string;
   setSelectedCategory: (code: string) => void;
   selectedMenus: selectedMenuProps[];
@@ -132,5 +132,5 @@ const ModalWrap = styled.section<ModalWrapProps>`
 const StyledMenuModal = styled(MenuModal)`
   box-sizing: border-box;
   width: 100%;
-  height: auto;
+  height: 100%;
 `;

@@ -1,7 +1,14 @@
 namespace menuTypes {
-  export interface getMenuByCategoryResProps {
-    title: string;
-    code: string;
+  export interface menuItemProps {
+    calorie: string;
+    createdAt: string;
+    updatedAt: string;
+    foodCode: string;
+    foodTitle: string;
+    id: number;
+    imageUrl: string;
+    isRepresentative: "Y" | "N";
+    menuCategoryCode: string;
   }
 }
 
