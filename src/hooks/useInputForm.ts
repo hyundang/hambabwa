@@ -7,7 +7,7 @@ const useInput = <Type>(initialForm: Type) => {
     setForm((prevForm: Type) => ({ ...prevForm, [name]: value }));
   }, []);
 
-  return {form, onChange};
+  return { form, onChange };
 };
 
 export default useInput;

@@ -19,7 +19,9 @@ const CheckboxForm = ({
   return (
     <CheckboxFormWrap id={id} className={className} style={style}>
       <CheckBox className="checkbox" checked={checked} onClick={onClick} />
-      <span className="text" onClick={onClick} >{text}</span>
+      <span className="text" onClick={onClick}>
+        {text}
+      </span>
     </CheckboxFormWrap>
   );
 };
