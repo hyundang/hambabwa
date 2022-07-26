@@ -1,28 +1,32 @@
 import { AxiosError } from "axios";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { categoryApi, menuApi } from "src/apis";
+import { categoryApi, menuApi, userApi } from "src/apis";
 import { selectedMenuProps } from "src/components/organisms/chooseCategory";
 import { Profile } from "src/components/templates";
 import { categoryTypes, menuTypes } from "src/types";
+import { saveDataInCookie } from "src/utils";
 
 interface ProfilePageProps {
   categoryList: categoryTypes.getCategoryResProps[];
 }
 const ProfilePage = ({ categoryList }: ProfilePageProps) => {
-  //   const { data: categoryList, isLoading: isCategoryListLoading } = useQuery<
-  //     categoryTypes.getCategoryResProps[],
-  //     AxiosError
-  //   >("/category", categoryApi.getCategory);
   const [category, setCategory] = useState("");
-  const { data: menuList, isLoading: isMenuListLoading } = useQuery<
-    menuTypes.getMenuByCategoryResProps[],
+  const { data: menuList, refetch } = useQuery<
+    menuTypes.menuItemProps[],
     AxiosError
-  >(["/category", category], () => menuApi.getMenuByCategory(category));
+  >(["/category", category], () => menuApi.getMenuByCategory(category), {
+    enabled: false,
+  });
+  const handleSelectCategory = async (code: string) => {
+    await setCategory(code);
+    refetch();
+  };
 
-  const [menu, setMenu] = useState<selectedMenuProps[]>([]);
+  const [menus, setMenus] = useState<selectedMenuProps[]>([]);
   useEffect(() => {
-    setMenu(
+    setMenus(
       categoryList.map((c) => ({
         categoryCode: c.code,
         menuCodes: [],
@@ -30,15 +34,28 @@ const ProfilePage = ({ categoryList }: ProfilePageProps) => {
     );
   }, []);
 
-  if (isMenuListLoading) return <div>...Loading</div>;
+  const router = useRouter();
+  const handleClickNext = async () => {
+    let body: string[] = [];
+    menus.forEach((menu) => {
+      body = [...body, ...menu.menuCodes];
+    });
+    const data = await userApi.postProfileList({ menuIds: body.join(",") });
+    saveDataInCookie("isProfileWritten", true);
+    saveDataInCookie("nickname", data.nickname);
+    saveDataInCookie("imageUrl", data.imageUrl);
+    router.replace("/map");
+  };
+
   return (
     <Profile
       categoryList={categoryList || []}
       menuList={menuList || []}
       selectedCategory={category}
-      setSelectedCategory={setCategory}
-      selectedMenus={menu}
-      setSelectedMenus={setMenu}
+      setSelectedCategory={handleSelectCategory}
+      selectedMenus={menus}
+      setSelectedMenus={setMenus}
+      onClickNext={handleClickNext}
     />
   );
 };

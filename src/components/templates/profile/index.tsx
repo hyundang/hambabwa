@@ -6,6 +6,9 @@ import { PageContainer, ChooseCategory } from "src/components/organisms";
 import { ChooseCategoryProps } from "src/components/organisms/chooseCategory";
 import styled from "styled-components";
 
+interface ProfileProps extends ChooseCategoryProps {
+  onClickNext: () => void;
+}
 const Profile = ({
   categoryList,
   menuList,
@@ -13,7 +16,8 @@ const Profile = ({
   setSelectedCategory,
   selectedMenus,
   setSelectedMenus,
-}: ChooseCategoryProps) => {
+  onClickNext,
+}: ProfileProps) => {
   const returnSelectedCategories = () =>
     selectedMenus
       .filter((sm) => sm.menuCodes.length > 0)
@@ -24,10 +28,6 @@ const Profile = ({
     if (returnSelectedCategories().length > 0) setIsBtnActive(true);
     else setIsBtnActive(false);
   }, [selectedMenus]);
-
-  const handleClickBtn = () => {
-    return "hi";
-  };
 
   return (
     <PageContainer title="선호음식">
@@ -42,7 +42,7 @@ const Profile = ({
           setSelectedMenus={setSelectedMenus}
         />
       </InnerContainer>
-      <StyledButton isActive={isBtnActive} onClick={handleClickBtn}>
+      <StyledButton isActive={isBtnActive} onClick={onClickNext}>
         다음
       </StyledButton>
     </PageContainer>
