@@ -22,7 +22,8 @@ const nextConfig = {
           process.env.NODE_ENV === "production"
             ? JSON.stringify(process.env.API_URL)
             : JSON.stringify(process.env.DEV_API_URL),
-      }),
+        KAKAO_APP_KEY: JSON.stringify(process.env.KAKAO_APP_KEY),
+      })
       // new webpack.EnvironmentPlugin(["NODE_ENV"])
     );
 
@@ -31,6 +32,7 @@ const nextConfig = {
   env: {
     API_URL: process.env.API_URL,
     DEV_API_URL: process.env.DEV_API_URL,
+    KAKAO_APP_KEY: process.env.KAKAO_APP_KEY,
   },
 };
 
