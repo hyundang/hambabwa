@@ -4,6 +4,8 @@ import styled, { css } from "styled-components";
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** 버튼 활성화 여부 */
   isActive: boolean;
+  /** 흰색 버튼 여부 */
+  isWhite?: boolean;
 }
 
 const Button = ({
@@ -13,6 +15,7 @@ const Button = ({
   children,
   isActive,
   onClick,
+  isWhite = false,
 }: ButtonProps) => {
   return (
     <ButtonWrap
@@ -22,7 +25,7 @@ const Button = ({
       type="button"
       role="button"
       isActive={isActive}
-      onClick={isActive ? onClick : undefined}
+      onClick={isActive || isWhite ? onClick : undefined}
     >
       {children}
     </ButtonWrap>
@@ -38,10 +41,15 @@ const ButtonWrap = styled.button<ButtonProps>`
   margin: 0;
   color: var(--white);
   transition: 0.2s;
-  ${({ isActive }) =>
+  ${({ isActive, isWhite }) =>
     isActive
       ? css`
           background-color: var(--red_1);
+        `
+      : isWhite
+      ? css`
+          background-color: var(--white);
+          color: var(--red_1);
         `
       : css`
           background-color: var(--gray_5);
