@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { AskComment } from "src/components/organisms";
 import { restaurantTypes } from "src/types";
 import styled from "styled-components";
@@ -15,6 +16,10 @@ const RestaurantDetail = ({
   onLikeMenu,
   nickname,
 }: RestaurantDetailProps) => {
+  const router = useRouter();
+  const handleChangeScore = () => {
+    router.push("/review");
+  };
   return (
     <RestaurantDetailWrap>
       <DivideSection />
@@ -27,7 +32,7 @@ const RestaurantDetail = ({
       </MenuWrap>
       <DivideSection />
       <AskCommentWrap>
-        <AskComment onChangeScore={() => "hi"} nickname={nickname} />
+        <AskComment onChangeScore={handleChangeScore} nickname={nickname} />
       </AskCommentWrap>
       <DivideSection />
       <CommentWrap>
