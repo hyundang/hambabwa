@@ -4,15 +4,34 @@ import { authApi } from "src/apis";
 import { SignIn } from "src/components/templates";
 import { authTypes } from "src/types";
 import nextCookie from "next-cookies";
+import { ToastMsg } from "src/components/molecules";
+import { useToastMsg } from "src/hooks";
 
 const SignInPage = () => {
+  const { isToastMsgActive, handleToastMsg } = useToastMsg("signinError");
+
   const router = useRouter();
   const handleSignIn = async (params: authTypes.postSignInReqProps) => {
-    const data = await authApi.postSignIn(params);
+    try {
+      const data = await authApi.postSignIn(params);
+    } catch (e) {
+      handleToastMsg(true);
+      return;
+    }
     router.replace("/profile");
   };
 
-  return <SignIn onSignIn={handleSignIn} />;
+  return (
+    <>
+      <SignIn onSignIn={handleSignIn} />
+      <ToastMsg
+        isActive={isToastMsgActive.signinError}
+        setIsActive={handleToastMsg}
+        isError
+        text="😢 로그인에 실패했어요!"
+      />
+    </>
+  );
 };
 
 export default SignInPage;

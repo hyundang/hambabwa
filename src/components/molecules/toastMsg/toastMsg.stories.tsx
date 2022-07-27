@@ -18,11 +18,11 @@ const Template: ComponentStory<typeof ToastMsg> = (args) => (
 export const DefaultToastMsg = Template.bind({});
 DefaultToastMsg.args = {
   isActive: true,
-  text: "😀 클립보드에 복사되었어요! ",
+  text: "😀 클립보드에 복사되었어요!",
 };
 export const ErrorToastMsg = Template.bind({});
 ErrorToastMsg.args = {
   isActive: true,
   isError: true,
-  text: "😢 로그인에 실패했어요! ",
+  text: "😢 로그인에 실패했어요!",
 };

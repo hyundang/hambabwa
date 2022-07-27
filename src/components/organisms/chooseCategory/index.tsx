@@ -129,7 +129,7 @@ const ModalWrap = styled.section<ModalWrapProps>`
   position: absolute;
   border-radius: 20px;
 `;
-const StyledMenuModal = styled(MenuModal)`
+const StyledMenuModal = styled((props) => <MenuModal {...props} />)`
   box-sizing: border-box;
   width: 100%;
   height: 100%;
