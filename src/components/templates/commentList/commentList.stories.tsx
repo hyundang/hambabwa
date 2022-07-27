@@ -5,7 +5,7 @@ import CommentList from ".";
 export default {
   title: "components/templates/CommentList",
   component: CommentList,
-  decorators: [(story) => <div style={{ width: "340px" }}>{story()}</div>],
+  decorators: [(story) => <div style={{ width: "100%" }}>{story()}</div>],
   parameters: {
     actions: {
       handles: ["click button"],
