@@ -3,6 +3,7 @@ import { css } from "styled-components";
 const colorSystems = css`
   :root {
     --white: #ffffff;
+    --black: #3d3d3d;
     --red_1: #ff5252;
     --red_2: #ffbaba;
     --gray_1: #545454;

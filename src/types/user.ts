@@ -5,7 +5,7 @@ namespace userTypes {
     menuIds: string;
   }
 
-  export interface postProfileListResProps {
+  export interface userProps {
     id: number;
     createdAt: string;
     updatedAt: string;
@@ -13,6 +13,9 @@ namespace userTypes {
     nickname: string;
     role: "admin";
     imageUrl: string;
+  }
+
+  export interface postProfileListResProps extends userProps {
     favorites: menuTypes.menuItemProps[];
   }
 }
