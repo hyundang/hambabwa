@@ -1,6 +1,7 @@
 import { GlobalStyle } from "../src/styles/GlobalStyle";
 import { RecoilRoot } from "recoil";
 import { initialize, mswDecorator } from "msw-storybook-addon";
+import * as nextImage from 'next/image';
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -12,6 +13,12 @@ export const parameters = {
     expanded: true
   },
 };
+
+// next/Image 사용
+Object.defineProperty(nextImage, 'default', {
+  configurable: true,
+  value: props => <img {...props} />
+});
 
 // msw 초기화 함수 실행
 initialize();
