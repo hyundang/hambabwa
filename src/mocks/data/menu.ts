@@ -97,8 +97,32 @@ const getMenuRes = [
   },
 ];
 
+const getMenuDetails = [
+  {
+    menuId: 1,
+    title: "김치국",
+    menuImage: "https://image.hambabwa.kr/dev/menu/gimchigug.jpeg",
+    subTitle: "김치국",
+    calorie: "23Kcal",
+    categoryDepth1: "국 및 탕류",
+    categoryDepth2: "해당없음",
+    categoryDepth3: "해당없음",
+  },
+  {
+    menuId: 2,
+    title: "김치국_콩나물",
+    menuImage: "https://image.hambabwa.kr/dev/menu/gimchigug.jpeg",
+    subTitle: "김치국",
+    calorie: "12Kcal",
+    categoryDepth1: "국 및 탕류",
+    categoryDepth2: "콩나물",
+    categoryDepth3: "해당없음",
+  },
+];
+
 const menuData = {
   getMenuRes,
+  getMenuDetails
 };
 
 export default menuData;
