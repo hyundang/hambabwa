@@ -6,3 +6,4 @@ export { default as ChooseCategory } from "./chooseCategory";
 export { default as InfoWindow } from "./infoWindow";
 export { default as MenuInfo } from "./menuInfo";
 export { default as Comment } from "./comment";
+export { default as AskComment } from "./askComment";

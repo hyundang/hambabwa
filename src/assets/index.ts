@@ -11,3 +11,4 @@ export { default as starIcon } from "./icn_star.svg";
 export { default as emptyStarIcon } from "./icn_star_empty.svg";
 export { default as heartIcon } from "./icn_heart.svg";
 export { default as emptyHeartIcon } from "./icn_heart_empty.svg";
+export { default as profileImg } from "./img_profile.svg";
