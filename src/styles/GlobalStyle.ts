@@ -10,6 +10,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: "AppleSDGothicNeo", 'sans-serif';
     font-size: 10px;
     font-weight: 400;
+    color: var(--black);
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     appearance: none;
     -webkit-appearance: none;

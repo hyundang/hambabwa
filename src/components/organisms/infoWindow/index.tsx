@@ -1,11 +1,10 @@
-import Image from "next/image";
 import Link from "next/link";
 import { HTMLAttributes } from "react";
 import { bubbleImg, copyIcon } from "src/assets";
 import { restaurantTypes } from "src/types";
 import styled from "styled-components";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { Star } from "src/components/atoms";
+import { ProfileImg, Star } from "src/components/atoms";
 
 interface InfoWindowProps extends HTMLAttributes<HTMLDivElement> {
   restaurantInfo: restaurantTypes.restaurantProps;
@@ -25,17 +24,7 @@ const InfoWindow = ({
         </Link>
       </TitleWrap>
       <DetailWrap>
-        <Image
-          alt="restaurant_img"
-          className="restaurant_img"
-          src={restaurantInfo.imageUrl}
-          width={86}
-          height={86}
-          style={{
-            borderRadius: "43px",
-            border: "4px solid var(--red_2)",
-          }}
-        />
+        <ProfileImg src={restaurantInfo.imageUrl} size={86} />
         <div className="text_wrap">
           <span className="score">
             <p>별점:&nbsp;</p>
