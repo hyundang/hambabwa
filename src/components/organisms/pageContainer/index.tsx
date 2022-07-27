@@ -4,12 +4,17 @@ import { HTMLAttributes } from "react";
 
 interface PageContainerProps extends HTMLAttributes<HTMLElement> {
   title: string;
+  isBackActive?: boolean;
 }
 
-const PageContainer = ({ title, children }: PageContainerProps) => {
+const PageContainer = ({
+  title,
+  children,
+  isBackActive,
+}: PageContainerProps) => {
   return (
     <>
-      <StyledHeader title={title} />
+      <StyledHeader title={title} isBackActive={isBackActive} />
       <Container>{children}</Container>
     </>
   );

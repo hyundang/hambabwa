@@ -12,7 +12,7 @@ interface SignUpProps {
 
 const SignUp = ({ onSignUp }: SignUpProps) => {
   return (
-    <PageContainer title="회원가입">
+    <PageContainer title="회원가입" isBackActive>
       <SignUpContainer>
         <Image src={logoImg} alt="logo" width={129} height={123} priority />
         <SignForm type="signup" onClickBtn={onSignUp}>
