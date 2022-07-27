@@ -4,3 +4,4 @@ export { default as MenuModal } from "./menuModal";
 // eslint-disable-next-line import/no-cycle
 export { default as ChooseCategory } from "./chooseCategory";
 export { default as InfoWindow } from "./infoWindow";
+export { default as MenuInfo } from "./menuInfo";

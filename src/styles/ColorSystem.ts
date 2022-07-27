@@ -11,6 +11,7 @@ const colorSystems = css`
     --gray_4: #c4c4c4;
     --gray_5: #d3d3d3;
     --gray_6: #d9d9d9;
+    --gray_7: #efefef;
   }
 `;
 
