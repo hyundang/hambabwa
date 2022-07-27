@@ -4,3 +4,8 @@ export { default as viewIcon } from "./icn_view.svg";
 export { default as hideIcon } from "./icn_hide.svg";
 export { default as circleImg } from "./img_circle.svg";
 export { default as footTextImg } from "./img_food_text.svg";
+export { default as pinIcon } from "./icn_pin.svg";
+export { default as bubbleImg } from "./img_bubble.svg";
+export { default as copyIcon } from "./icn_copy.svg";
+export { default as starIcon } from "./icn_star.svg";
+export { default as emptyStarIcon } from "./icn_star_empty.svg";
