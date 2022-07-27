@@ -1,18 +1,19 @@
 import menuData from "./menu";
 
-const getComments = [
-  {
-    id: 1,
-    createdAt: "2022-07-27T05:35:03.693Z",
-    updatedAt: "2022-07-27T05:35:03.693Z",
-    comment: "흥해라흥",
-    stars: 4.5,
-    writer: {
-      email: "test@hambabwa.kr",
-      nickname: "김지원",
-    },
+const getComment = {
+  id: 1,
+  createdAt: "2022-07-27T05:35:03.693Z",
+  updatedAt: "2022-07-27T05:35:03.693Z",
+  comment:
+    "흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥",
+  stars: 4.5,
+  writer: {
+    email: "test@hambabwa.kr",
+    nickname: "김지원",
   },
-];
+};
+
+const getComments = [getComment, getComment, getComment];
 
 const getRestaurant = {
   id: 1,
@@ -35,6 +36,7 @@ const getRestaurant = {
 const getRestaurants = [getRestaurant, getRestaurant];
 
 const restaurantData = {
+  getComment,
   getComments,
   getRestaurant,
   getRestaurants,

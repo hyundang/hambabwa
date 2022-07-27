@@ -1,8 +1,9 @@
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, useEffect, useState } from "react";
 import { Star } from "src/components/atoms";
 import { Comment } from "src/components/organisms";
 import { restaurantTypes } from "src/types";
 import styled from "styled-components";
+import cookies from "react-cookies";
 
 interface CommentListProps extends HTMLAttributes<HTMLDivElement> {
   totalScore: number;
@@ -14,6 +15,10 @@ const CommentList = ({
   totalScore,
   comments,
 }: CommentListProps) => {
+  const [nickname, setNickname] = useState("");
+  useEffect(() => {
+    setNickname(cookies.load("nickname"));
+  }, []);
   return (
     <CommentListWrap id={id} className={className}>
       <TitleWrap>
@@ -21,7 +26,16 @@ const CommentList = ({
         <Star defaultValue={totalScore} readOnly size={22} />
       </TitleWrap>
       {comments.map((comment) => (
-        <Comment key={comment.id} comment={comment} />
+        <Comment key={comment.id} comment={comment}>
+          {nickname === comment.writer.nickname ? (
+            <>
+              <Comment.MyProfileImg />
+              <Comment.Menu />
+            </>
+          ) : (
+            <Comment.DefaultProfileImg />
+          )}
+        </Comment>
       ))}
     </CommentListWrap>
   );
