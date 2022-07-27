@@ -23,7 +23,11 @@ const MenuInfo = ({
           <p>{menuInfo.calorie}</p>
         </div>
       </InfoWrap>
-      <Like initState={false} size={28} onClickLike={onClickLike} />
+      <Like
+        initState={menuInfo.isFavorite !== null}
+        size={28}
+        onClickLike={onClickLike}
+      />
     </MenuInfoWrap>
   );
 };

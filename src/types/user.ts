@@ -11,7 +11,7 @@ namespace userTypes {
     updatedAt: string;
     email: string;
     nickname: string;
-    role: "admin";
+    role: "admin" | "user";
     imageUrl: string;
   }
 

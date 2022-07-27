@@ -1,3 +1,6 @@
+// eslint-disable-next-line import/no-cycle
+import userTypes from "./user";
+
 namespace menuTypes {
   export interface menuItemProps {
     calorie: string;
@@ -20,6 +23,7 @@ namespace menuTypes {
     categoryDepth1: string;
     categoryDepth2: string;
     categoryDepth3: string;
+    isFavorite: userTypes.userProps | null;
   }
 }
 
