@@ -19,7 +19,7 @@ const MenuInfo = ({
       <InfoWrap>
         <ProfileImg src={menuInfo.menuImage} size={86} />
         <div className="text_wrap">
-          <p className="title">{menuInfo.title}</p>
+          <p className="title">{menuInfo.foodTitle}</p>
           <p>{menuInfo.calorie}</p>
         </div>
       </InfoWrap>

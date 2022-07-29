@@ -5,7 +5,7 @@ import { Star } from "src/components/atoms";
 import styled from "styled-components";
 
 interface AskCommentProps extends HTMLAttributes<HTMLDivElement> {
-  onChangeScore: () => void;
+  onChangeScore: (score: number) => void;
   nickname: string;
 }
 const AskComment = ({

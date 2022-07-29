@@ -6,6 +6,7 @@ import back_icon from "src/assets/icn_back_arrow.svg";
 interface HeaderProps extends HTMLAttributes<HTMLElement> {
   title: string;
   isBackActive?: boolean;
+  onClickBack?: () => void;
 }
 const Header = ({
   id,
@@ -13,9 +14,12 @@ const Header = ({
   style,
   title,
   isBackActive = false,
+  onClickBack,
 }: HeaderProps) => {
   const router = useRouter();
-  const handleClickBack = () => router.back();
+  const handleClickBack = () => {
+    onClickBack ? onClickBack() : router.back();
+  };
 
   return (
     <HeaderWrap id={id} className={className} style={style}>

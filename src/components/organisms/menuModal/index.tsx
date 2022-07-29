@@ -52,7 +52,7 @@ export default MenuModal;
 
 const MenuModalWrap = styled.dialog`
   all: unset;
-  height: 100%;
+  /* height: 100%; */
   background-color: rgba(0, 0, 0, 0.7);
   padding: 26px 16px 14px 16px;
   display: flex;

@@ -5,7 +5,7 @@ import MenuInfoList from ".";
 export default {
   title: "components/templates/MenuInfoList",
   component: MenuInfoList,
-  decorators: [(story) => <div style={{ width: "340px" }}>{story()}</div>],
+  decorators: [(story) => <div style={{ width: "100%" }}>{story()}</div>],
   parameters: {
     actions: {
       handles: ["click button"],
@@ -21,4 +21,5 @@ export const DefaultMenuInfoList = Template.bind({});
 DefaultMenuInfoList.args = {
   menuInfos: menuData.getMenuDetails,
   onLikeMenu: () => "hi",
+  totalCount: menuData.getMenuDetails.length,
 };

@@ -16,7 +16,6 @@ const ProfileImg = ({ src, size }: ProfileImgProps) => {
         borderRadius: "50%",
         border: "4px solid var(--red_2)",
       }}
-      placeholder="blur"
     />
   );
 };
