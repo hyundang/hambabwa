@@ -130,6 +130,7 @@ const DefaultComments = ({ email }: { email: string }) => {
             ) : (
               <Comment.DefaultProfileImg />
             )}
+            <Comment.DefaultContent />
           </Comment>
         ))
       )}
@@ -156,6 +157,7 @@ const MyComments = () => {
             style={{ padding: "12px 25px 18px 18px" }}
           >
             <Comment.Menu onClickDelete={handleClickDelete(comment.id)} />
+            <Comment.MyContent />
           </Comment>
         ))
       )}

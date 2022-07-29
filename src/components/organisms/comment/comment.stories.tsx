@@ -18,6 +18,7 @@ export default {
 export const DefaultComment = () => (
   <Comment comment={restaurantData.getComments[0]}>
     <Comment.DefaultProfileImg />
+    <Comment.DefaultContent />
   </Comment>
 );
 
@@ -25,11 +26,13 @@ export const MyComment = () => (
   <Comment comment={restaurantData.getComments[0]}>
     <Comment.MyProfileImg />
     <Comment.Menu onClickDelete={() => "hi"} />
+    <Comment.DefaultContent />
   </Comment>
 );
 
 export const MyPageComment = () => (
   <Comment comment={restaurantData.getComments[0]}>
     <Comment.Menu onClickDelete={() => "hi"} />
+    <Comment.MyContent />
   </Comment>
 );
