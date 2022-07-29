@@ -6,25 +6,32 @@ interface apiRequestProps {
   url: string;
   type: "get" | "post" | "put" | "delete" | "patch";
   body?: object;
+  params?: any;
 }
 
-const getResponse = async ({ axios, url, type, body }: apiRequestProps) => {
+const getResponse = async ({
+  axios,
+  url,
+  type,
+  body,
+  params,
+}: apiRequestProps) => {
   let res;
   switch (type) {
     case "get":
-      res = await axios.get(url);
+      res = await axios.get(url, { params });
       break;
     case "post":
-      res = await axios.post(url, body);
+      res = await axios.post(url, body, { params });
       break;
     case "put":
-      res = await axios.put(url, body);
+      res = await axios.put(url, body, { params });
       break;
     case "patch":
-      res = await axios.patch(url, body);
+      res = await axios.patch(url, body, { params });
       break;
     case "delete":
-      res = await axios.delete(url);
+      res = await axios.delete(url, { params });
       break;
     default:
   }

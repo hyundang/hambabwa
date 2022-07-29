@@ -8,3 +8,4 @@ export { default as RestaurantDetail } from "./restaurantDetail";
 export { default as MenuDetail } from "./menuDetail";
 export { default as CommentDetail } from "./commentDetail";
 export { default as AddComment } from "./addComment";
+export { default as MyComments } from "./myComments";
