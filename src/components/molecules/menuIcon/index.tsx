@@ -3,12 +3,12 @@ import { useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { menuIcon } from "src/assets";
 import states from "src/modules/states";
-import { restaurantTypes } from "src/types";
+import { restaurantTypes, userTypes } from "src/types";
 import styled from "styled-components";
 import ModalContainer from "../modalContainer";
 
 interface MenuIconProps {
-  comment?: restaurantTypes.menuCommentProps;
+  comment?: restaurantTypes.menuCommentProps | userTypes.myCommentProps;
   onClickDelete: () => void;
 }
 const MenuIcon = ({ comment, onClickDelete }: MenuIconProps) => {

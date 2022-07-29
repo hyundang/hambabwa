@@ -6,19 +6,19 @@ import {
   useState,
 } from "react";
 import { Comment, ConfirmModal } from "src/components/organisms";
-import { restaurantTypes } from "src/types";
+import { restaurantTypes, userTypes } from "src/types";
 import styled from "styled-components";
 import { Score } from "src/components/molecules";
 
 interface ContextProps extends HTMLAttributes<HTMLDivElement> {
-  comments?: restaurantTypes.menuCommentProps[];
+  comments?: restaurantTypes.menuCommentProps[] | userTypes.myCommentProps[];
   handleClickDelete?: (cid: number) => () => void;
 }
 const CommentListContext = createContext<ContextProps>({});
 CommentListContext.displayName = "CommentListContext";
 
 interface CommentListProps extends HTMLAttributes<HTMLDivElement> {
-  comments: restaurantTypes.menuCommentProps[];
+  comments: restaurantTypes.menuCommentProps[] | userTypes.myCommentProps[];
   onClickDelete: (cid: number) => void;
 }
 const CommentList = ({
@@ -100,10 +100,11 @@ const CountWrap = styled.div`
   width: 100%;
   height: 34px;
   padding: 0 25px;
+  margin-top: 5px;
   border-bottom: 1px solid var(--gray_7);
   line-height: 34px;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 13px;
   b {
     font-weight: 600;
     color: var(--red_1);
@@ -112,7 +113,6 @@ const CountWrap = styled.div`
 
 const DefaultComments = ({ email }: { email: string }) => {
   const { comments, handleClickDelete } = useCommentList();
-
   return (
     <CommentListWrap>
       {comments?.length === 0 ? (
@@ -140,7 +140,6 @@ const DefaultComments = ({ email }: { email: string }) => {
 
 const MyComments = () => {
   const { comments, handleClickDelete } = useCommentList();
-
   return (
     <CommentListWrap>
       {comments?.length === 0 ? (

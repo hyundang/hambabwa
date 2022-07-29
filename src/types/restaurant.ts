@@ -1,8 +1,9 @@
+/* eslint-disable import/no-cycle */
 import menuTypes from "./menu";
 import userTypes from "./user";
 
 namespace restaurantTypes {
-  export interface restaurantProps {
+  export interface defaultRestaurntProps {
     id: number;
     createdAt: string;
     updatedAt: string;
@@ -15,12 +16,15 @@ namespace restaurantTypes {
     lng: number;
     imageUrl: string;
     lunchPrice: number;
+  }
+
+  export interface restaurantProps extends defaultRestaurntProps {
     comments: menuCommentProps[];
     menus: menuTypes.menuDetailProps[];
     hasCommented: boolean;
   }
 
-  interface defaultCommentProps {
+  export interface defaultCommentProps {
     id: number;
     createdAt: string;
     updatedAt: string;

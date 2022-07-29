@@ -2,17 +2,17 @@ import Image from "next/image";
 import { createContext, HTMLAttributes, useContext, useMemo } from "react";
 import { Star } from "src/components/atoms";
 import { MenuIcon, MyProfileImg as ProfileImg } from "src/components/molecules";
-import { restaurantTypes } from "src/types";
+import { restaurantTypes, userTypes } from "src/types";
 import styled from "styled-components";
 
 interface ContextProps extends HTMLAttributes<HTMLDivElement> {
-  comment?: restaurantTypes.menuCommentProps;
+  comment?: restaurantTypes.menuCommentProps | userTypes.myCommentProps;
 }
 const CommentContext = createContext<ContextProps>({});
 CommentContext.displayName = "CommentContext";
 
 interface CommentProps extends HTMLAttributes<HTMLDivElement> {
-  comment: restaurantTypes.menuCommentProps;
+  comment: restaurantTypes.menuCommentProps | userTypes.myCommentProps;
 }
 const Comment = ({ id, className, style, children, comment }: CommentProps) => {
   const value = useMemo(() => ({ comment }), [comment]);
@@ -46,20 +46,24 @@ const useComment = () => {
 
 const DefaultProfileImg = () => {
   const { comment } = useComment();
-  return (
-    <Image
-      alt="profile_img"
-      src={comment?.writer.imageUrl || ""}
-      width={36}
-      height={36}
-      style={{ borderRadius: 18, minWidth: 36 }}
-    />
-  );
+  if (comment && "writer" in comment)
+    return (
+      <Image
+        alt="profile_img"
+        src={comment?.writer.imageUrl || ""}
+        width={36}
+        height={36}
+        style={{ borderRadius: 18, minWidth: 36 }}
+      />
+    );
+  return <div />;
 };
 
 const MyProfileImg = () => {
   const { comment } = useComment();
-  return <ProfileImg imageUrl={comment?.writer.imageUrl || ""} size={36} />;
+  if (comment && "writer" in comment)
+    return <ProfileImg imageUrl={comment?.writer.imageUrl || ""} size={36} />;
+  return <div />;
 };
 
 const Menu = ({ onClickDelete }: { onClickDelete: () => void }) => {
@@ -69,33 +73,38 @@ const Menu = ({ onClickDelete }: { onClickDelete: () => void }) => {
 
 const DefaultContent = () => {
   const { comment } = useComment();
-  return (
-    <ContentWrap>
-      <Star defaultValue={comment?.stars || 0} readOnly size={10} />
-      <div className="text_wrap" style={{ marginTop: 3 }}>
-        <p className="nickname">{comment?.writer?.nickname}&nbsp;</p>
-        <p className="date">
-          | {comment?.createdAt.slice(0, 10).replaceAll("-", ".")}
-        </p>
-      </div>
-      <p className="comment">{comment?.comment}</p>
-    </ContentWrap>
-  );
+  if (comment && "writer" in comment)
+    return (
+      <ContentWrap>
+        <Star defaultValue={comment?.stars || 0} readOnly size={10} />
+        <div className="text_wrap" style={{ marginTop: 3 }}>
+          <p className="nickname">{comment?.writer?.nickname}&nbsp;</p>
+          <p className="date">
+            | {comment?.createdAt.slice(0, 10).replaceAll("-", ".")}
+          </p>
+        </div>
+        <p className="comment">{comment?.comment}</p>
+      </ContentWrap>
+    );
+  return <div />;
 };
+
 const MyContent = () => {
   const { comment } = useComment();
-  return (
-    <ContentWrap>
-      <p className="restaurant">{`레스토랑이름${1}`}</p>
-      <div className="text_wrap">
-        <Star defaultValue={comment?.stars || 0} readOnly size={9} />
-        <p className="date">
-          &nbsp;| {comment?.createdAt.slice(0, 10).replaceAll("-", ".")}
-        </p>
-      </div>
-      <p className="comment">{comment?.comment}</p>
-    </ContentWrap>
-  );
+  if (comment && "restaurant" in comment)
+    return (
+      <ContentWrap>
+        <p className="restaurant">{comment?.restaurant.name}</p>
+        <div className="text_wrap">
+          <Star defaultValue={comment?.stars || 0} readOnly size={9} />
+          <p className="date">
+            &nbsp;| {comment?.createdAt.slice(0, 10).replaceAll("-", ".")}
+          </p>
+        </div>
+        <p className="comment">{comment?.comment}</p>
+      </ContentWrap>
+    );
+  return <div />;
 };
 const ContentWrap = styled.div`
   margin-left: 7px;

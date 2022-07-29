@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { restaurantData } from "src/mocks/data";
+import { restaurantData, userData } from "src/mocks/data";
 import CommentList from ".";
 
 export default {
@@ -43,5 +43,5 @@ const MypageTemplate: ComponentStory<typeof CommentList> = (args) => (
 );
 export const MyCommentList = MypageTemplate.bind({});
 MyCommentList.args = {
-  comments: restaurantData.getComments,
+  comments: userData.getMyComments,
 };
