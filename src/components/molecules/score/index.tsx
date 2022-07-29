@@ -14,7 +14,7 @@ const Score = ({
   return (
     <TitleWrap>
       <div className="score_wrap">
-        <p>{score}점</p>
+        <p>{Math.round((score + Number.EPSILON) * 10) / 10}점</p>
         <Star defaultValue={score} readOnly size={22} />
       </div>
       {displayTotalCount && <p className="total_count">전체 {totalCount}</p>}
