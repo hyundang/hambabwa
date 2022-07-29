@@ -16,7 +16,7 @@ namespace menuTypes {
 
   export interface menuDetailProps {
     menuId: number;
-    title: string;
+    foodTitle: string;
     menuImage: string;
     subTitle: string;
     calorie: string;
