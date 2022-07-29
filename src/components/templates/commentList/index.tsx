@@ -110,7 +110,7 @@ const CountWrap = styled.div`
   }
 `;
 
-const DefaultComments = ({ nickname }: { nickname: string }) => {
+const DefaultComments = ({ email }: { email: string }) => {
   const { comments, handleClickDelete } = useCommentList();
 
   return (
@@ -122,7 +122,7 @@ const DefaultComments = ({ nickname }: { nickname: string }) => {
         comments &&
         comments.map((comment) => (
           <Comment key={comment.id} comment={comment}>
-            {nickname === comment.writer.nickname ? (
+            {"writer" in comment && email === comment.writer.email ? (
               <>
                 <Comment.MyProfileImg />
                 <Comment.Menu onClickDelete={handleClickDelete(comment.id)} />
@@ -143,7 +143,9 @@ const MyComments = () => {
   return (
     <CommentListWrap>
       {comments?.length === 0 ? (
-        <p className="empty_text">작성된 후기가 없어요.</p>
+        <p className="empty_text" style={{ marginTop: 20 }}>
+          작성된 후기가 없어요.
+        </p>
       ) : (
         handleClickDelete &&
         comments &&
@@ -171,7 +173,7 @@ const CommentListWrap = styled.div`
   .empty_text {
     width: 100%;
     text-align: center;
-    font-size: 12px;
+    font-size: 14px;
     color: var(--gray_2);
   }
 `;

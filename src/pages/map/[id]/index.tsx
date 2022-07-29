@@ -11,6 +11,7 @@ import { useEffect } from "react";
 interface MapDetailProps {
   restaurantInfo: restaurantTypes.restaurantProps;
   nickname: string;
+  email: string;
 }
 const MapDetail = ({ restaurantInfo, nickname }: MapDetailProps) => {
   const handleLikeMenu = async (menuId: number) => {
@@ -28,22 +29,23 @@ const MapDetail = ({ restaurantInfo, nickname }: MapDetailProps) => {
     await restaurantApi.deleteComment(cid);
   };
 
-  return (
-    <RestaurantDetail
-      restaurantInfo={restaurantInfo}
-      nickname={nickname}
-      onLikeMenu={handleLikeMenu}
-      onChangeScore={setScore}
-      onClickCommentDelete={handleClickDelete}
-    />
-  );
+    return (
+      <RestaurantDetail
+        restaurantInfo={restaurantInfo}
+        nickname={nickname}
+        email={email}
+        onLikeMenu={handleLikeMenu}
+        onChangeScore={setScore}
+        onClickCommentDelete={handleClickDelete}
+      />
+    );
 };
 
 export default MapDetail;
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const allCookies = nextCookies(ctx);
-  const { nickname } = allCookies;
+  const { nickname, email } = allCookies;
 
   if (ctx.req.headers.cookie) {
     auth.defaults.headers.common.Cookie = ctx.req.headers.cookie;
@@ -56,6 +58,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     props: {
       restaurantInfo,
       nickname,
+      email,
     },
   };
 };

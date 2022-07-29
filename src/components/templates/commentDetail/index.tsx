@@ -6,19 +6,19 @@ interface CommentDetailProps {
   totalScore: number;
   comments: restaurantTypes.menuCommentProps[];
   onClickDelete: (cid: number) => void;
-  nickname: string;
+  email: string;
 }
 const CommentDetail = ({
   comments,
   totalScore,
   onClickDelete,
-  nickname,
+  email,
 }: CommentDetailProps) => {
   return (
     <PageContainer title="후기 상세" isBackActive>
       <CommentList comments={comments} onClickDelete={onClickDelete}>
         <CommentList.TotalScore totalScore={totalScore} displayTotalCount />
-        <CommentList.DefaultComments nickname={nickname} />
+        <CommentList.DefaultComments email={email} />
       </CommentList>
     </PageContainer>
   );
