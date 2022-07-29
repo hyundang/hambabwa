@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import menuTypes from "./menu";
 
 namespace userTypes {
@@ -11,7 +12,7 @@ namespace userTypes {
     updatedAt: string;
     email: string;
     nickname: string;
-    role: "admin";
+    role: "admin" | "user";
     imageUrl: string;
   }
 

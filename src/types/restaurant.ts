@@ -17,6 +17,7 @@ namespace restaurantTypes {
     lunchPrice: number;
     comments: menuCommentProps[];
     menus: menuTypes.menuDetailProps[];
+    hasCommented: boolean;
   }
 
   interface defaultCommentProps {
@@ -31,11 +32,12 @@ namespace restaurantTypes {
     writer: {
       email: string;
       nickname: string;
+      imageUrl: string;
     };
   }
 
   export interface postCommentReqProps {
-    restaurnatId: number;
+    restaurantId: number;
     comment: string;
     stars: number;
   }
@@ -44,6 +46,10 @@ namespace restaurantTypes {
       id: number;
     };
     writer: userTypes.userProps;
+  }
+  export interface patchCommentReqProps {
+    comment: string;
+    stars: number;
   }
 }
 

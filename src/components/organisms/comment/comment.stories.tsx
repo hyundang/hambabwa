@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { ComponentMeta } from "@storybook/react";
 import { restaurantData } from "src/mocks/data";
 import Comment from ".";
 
@@ -15,11 +15,21 @@ export default {
   },
 } as ComponentMeta<typeof Comment>;
 
-const Template: ComponentStory<typeof Comment> = (args) => (
-  <Comment {...args} />
+export const DefaultComment = () => (
+  <Comment comment={restaurantData.getComments[0]}>
+    <Comment.DefaultProfileImg />
+  </Comment>
 );
 
-export const DefaultComment = Template.bind({});
-DefaultComment.args = {
-  comment: restaurantData.getComments[0],
-};
+export const MyComment = () => (
+  <Comment comment={restaurantData.getComments[0]}>
+    <Comment.MyProfileImg />
+    <Comment.Menu onClickDelete={() => "hi"} />
+  </Comment>
+);
+
+export const MyPageComment = () => (
+  <Comment comment={restaurantData.getComments[0]}>
+    <Comment.Menu onClickDelete={() => "hi"} />
+  </Comment>
+);

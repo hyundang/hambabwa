@@ -19,11 +19,15 @@ const MenuInfo = ({
       <InfoWrap>
         <ProfileImg src={menuInfo.menuImage} size={86} />
         <div className="text_wrap">
-          <p className="title">{menuInfo.title}</p>
+          <p className="title">{menuInfo.foodTitle}</p>
           <p>{menuInfo.calorie}</p>
         </div>
       </InfoWrap>
-      <Like initState={false} size={28} onClickLike={onClickLike} />
+      <Like
+        initState={menuInfo.isFavorite !== null}
+        size={28}
+        onClickLike={onClickLike}
+      />
     </MenuInfoWrap>
   );
 };

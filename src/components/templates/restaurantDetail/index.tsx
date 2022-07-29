@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { AskComment } from "src/components/organisms";
 import { restaurantTypes } from "src/types";
 import styled from "styled-components";
@@ -9,33 +10,56 @@ interface RestaurantDetailProps {
   restaurantInfo: restaurantTypes.restaurantProps;
   onLikeMenu: (menuId: number) => void;
   nickname: string;
+  onChangeScore: (score: number) => void;
+  onClickCommentDelete: (cid: number) => void;
 }
 const RestaurantDetail = ({
   restaurantInfo,
   onLikeMenu,
   nickname,
+  onChangeScore,
+  onClickCommentDelete,
 }: RestaurantDetailProps) => {
+  const router = useRouter();
+  const handleChangeScore = (score: number) => {
+    onChangeScore(score);
+    router.push(`/comment/${router.query.id}`);
+  };
+
   return (
     <RestaurantDetailWrap>
       <DivideSection />
       <MenuWrap>
         <MenuInfoList
-          menuInfos={restaurantInfo.menus}
+          totalCount={restaurantInfo.menus.length}
+          menuInfos={restaurantInfo.menus.slice(0, 3)}
           onLikeMenu={onLikeMenu}
         />
-        <ShowMore url="/menu" text="메뉴 더보기" />
+        <ShowMore url={`/map/${router.query.id}/menu`} text="메뉴 더보기" />
       </MenuWrap>
-      <DivideSection />
-      <AskCommentWrap>
-        <AskComment onChangeScore={() => "hi"} nickname={nickname} />
-      </AskCommentWrap>
+      {!restaurantInfo.hasCommented && (
+        <>
+          <DivideSection />
+          <AskCommentWrap>
+            <AskComment onChangeScore={handleChangeScore} nickname={nickname} />
+          </AskCommentWrap>
+        </>
+      )}
       <DivideSection />
       <CommentWrap>
         <CommentList
-          totalScore={restaurantInfo.stars || 0}
-          comments={restaurantInfo.comments}
-        />
-        <ShowMore url="/comment" text="후기 더보기" />
+          comments={restaurantInfo.comments.slice(0, 3)}
+          onClickDelete={onClickCommentDelete}
+        >
+          <CommentList.TotalScore totalScore={restaurantInfo.stars || 0} />
+          <CommentList.DefaultComments nickname={nickname} />
+        </CommentList>
+        {restaurantInfo.comments.length !== 0 && (
+          <ShowMore
+            url={`/map/${router.query.id}/comment`}
+            text="후기 더보기"
+          />
+        )}
       </CommentWrap>
     </RestaurantDetailWrap>
   );

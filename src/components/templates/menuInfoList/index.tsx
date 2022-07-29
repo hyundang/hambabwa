@@ -4,12 +4,14 @@ import { menuTypes } from "src/types";
 import styled from "styled-components";
 
 interface MenuInfoListProps extends HTMLAttributes<HTMLDivElement> {
+  totalCount: number;
   menuInfos: menuTypes.menuDetailProps[];
   onLikeMenu: (menuId: number) => void;
 }
 const MenuInfoList = ({
   id,
   className,
+  totalCount,
   menuInfos,
   onLikeMenu,
 }: MenuInfoListProps) => {
@@ -23,7 +25,7 @@ const MenuInfoList = ({
     <MenuInfoListWrap id={id} className={className}>
       <TitleWrap>
         <p>오늘의 메뉴</p>
-        <p className="total_count">{menuInfos.length}</p>
+        <p className="total_count">{totalCount}</p>
       </TitleWrap>
       {menuInfos.map((menuInfo) => (
         <MenuInfo

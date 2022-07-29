@@ -14,8 +14,20 @@ const postProfileList = async (
   return data;
 };
 
+const patchProfileListById = async (
+  menuId: number
+): Promise<userTypes.postProfileListResProps> => {
+  const data = await apiRequest({
+    axios: client,
+    url: `/user/profile/list/${menuId}`,
+    type: "patch",
+  });
+  return data;
+};
+
 const userApi = {
   postProfileList,
+  patchProfileListById,
 };
 
 export default userApi;
