@@ -6,6 +6,7 @@ import { authTypes } from "src/types";
 import nextCookie from "next-cookies";
 import { ToastMsg } from "src/components/molecules";
 import { useToastMsg } from "src/hooks";
+import { auth } from "src/apis/auth";
 
 const SignInPage = () => {
   const { isToastMsgActive, handleToastMsg } = useToastMsg("signinError");
@@ -38,18 +39,21 @@ export default SignInPage;
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const allCookies = nextCookie(ctx);
-  const refreshToken = allCookies.Refresh;
-  const { isProfileWritten } = allCookies;
+  const { isProfileWritten, Refresh } = allCookies;
 
-  if (refreshToken) {
-    // try {
-    //   await authApi.getRefresh();
-    // } catch (e) {
-    //   // 로그인 풀렸을 때
-    //   return {
-    //     props: {},
-    //   };
-    // }
+  if (Refresh) {
+    try {
+      if (ctx.req.headers.cookie)
+        auth.defaults.headers.common.Cookie = ctx.req.headers.cookie;
+
+      await authApi.getRefresh();
+    } catch (e) {
+      // 로그인 풀렸을 때
+      auth.defaults.headers.common.Cookie = "";
+      return {
+        props: {},
+      };
+    }
     // 음식 선호 작성 했을 때
     if (isProfileWritten)
       return {
@@ -68,6 +72,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   }
 
   // 로그인 풀렸을 때 or 로그인 안되어 있을 때
+  auth.defaults.headers.common.Cookie = "";
   return {
     props: {},
   };

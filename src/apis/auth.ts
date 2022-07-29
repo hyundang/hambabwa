@@ -2,7 +2,7 @@ import { authTypes } from "src/types";
 import axios from "axios";
 import { apiRequest } from "src/utils";
 
-const auth = axios.create({
+export const auth = axios.create({
   baseURL: `${API_DOMAIN}/api`,
   withCredentials: true,
 });
