@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { statesTypes } from "src/types";
+import { restaurantTypes, statesTypes } from "src/types";
 
 const ToastMsgState = atom<statesTypes.ToastMsgStateProps>({
   key: "TOASTMSG",
@@ -10,4 +10,25 @@ const ToastMsgState = atom<statesTypes.ToastMsgStateProps>({
   },
 });
 
-export default ToastMsgState;
+const RestaurantInfoState = atom<restaurantTypes.restaurantProps | null>({
+  key: "RESTAURANT_INFO",
+  default: null,
+});
+
+const CommentScoreState = atom<number>({
+  key: "COMMENT_SCORE",
+  default: 0,
+});
+
+const CommentState = atom<restaurantTypes.menuCommentProps | null>({
+  key: "COMMENT",
+  default: null,
+});
+
+const states = {
+  ToastMsgState,
+  RestaurantInfoState,
+  CommentScoreState,
+  CommentState,
+};
+export default states;

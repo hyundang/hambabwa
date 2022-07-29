@@ -6,3 +6,4 @@ export { default as MenuInfoList } from "./menuInfoList";
 export { default as CommentList } from "./commentList";
 export { default as RestaurantDetail } from "./restaurantDetail";
 export { default as MenuDetail } from "./menuDetail";
+export { default as CommentDetail } from "./commentDetail";
