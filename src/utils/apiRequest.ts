@@ -4,7 +4,7 @@ import { AxiosInstance } from "axios";
 interface apiRequestProps {
   axios: AxiosInstance;
   url: string;
-  type: "get" | "post" | "put" | "delete";
+  type: "get" | "post" | "put" | "delete" | "patch";
   body?: object;
 }
 
@@ -19,6 +19,9 @@ const getResponse = async ({ axios, url, type, body }: apiRequestProps) => {
       break;
     case "put":
       res = await axios.put(url, body);
+      break;
+    case "patch":
+      res = await axios.patch(url, body);
       break;
     case "delete":
       res = await axios.delete(url);

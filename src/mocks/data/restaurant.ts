@@ -5,15 +5,44 @@ const getComment = {
   createdAt: "2022-07-27T05:35:03.693Z",
   updatedAt: "2022-07-27T05:35:03.693Z",
   comment:
+    "흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥",
+  stars: 4.5,
+  writer: {
+    email: "test@hambabwa.kr",
+    nickname: "김지원",
+    imageUrl:
+      "https://image.hambabwa.kr/prod/restaurant/b971effe-e538-4703-b1af-a7b2131cb752.png",
+  },
+};
+const getComment_long = {
+  id: 2,
+  createdAt: "2022-07-27T05:35:03.693Z",
+  updatedAt: "2022-07-27T05:35:03.693Z",
+  comment:
     "흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥",
   stars: 4.5,
   writer: {
     email: "test@hambabwa.kr",
     nickname: "김지원",
+    imageUrl:
+      "https://image.hambabwa.kr/prod/restaurant/b971effe-e538-4703-b1af-a7b2131cb752.png",
+  },
+};
+const getComment_short = {
+  id: 3,
+  createdAt: "2022-07-27T05:35:03.693Z",
+  updatedAt: "2022-07-27T05:35:03.693Z",
+  comment: "흥해라흥",
+  stars: 4.5,
+  writer: {
+    email: "test@hambabwa.kr",
+    nickname: "김지원",
+    imageUrl:
+      "https://image.hambabwa.kr/prod/restaurant/b971effe-e538-4703-b1af-a7b2131cb752.png",
   },
 };
 
-const getComments = [getComment, getComment, getComment];
+const getComments = [getComment, getComment_short, getComment_long];
 
 const getRestaurant = {
   id: 1,
@@ -31,6 +60,7 @@ const getRestaurant = {
   lunchPrice: 8000,
   comments: getComments,
   menus: menuData.getMenuDetails,
+  hasCommented: false,
 };
 
 const getRestaurants = [getRestaurant, getRestaurant];
