@@ -1,36 +1,32 @@
 import { Badge } from "@mui/material";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import {
   createContext,
   HTMLAttributes,
   useContext,
   useMemo,
+  useState,
 } from "react";
+import { useSetRecoilState } from "recoil";
 import { menuIcon } from "src/assets";
 import { Star } from "src/components/atoms";
+import { ModalContainer } from "src/components/molecules";
+import states from "src/modules/states";
 import { restaurantTypes } from "src/types";
 import styled from "styled-components";
 
 interface ContextProps extends HTMLAttributes<HTMLDivElement> {
   comment?: restaurantTypes.menuCommentProps;
-  onClickMenu?: () => void;
 }
 const CommentContext = createContext<ContextProps>({});
 CommentContext.displayName = "CommentContext";
 
 interface CommentProps extends HTMLAttributes<HTMLDivElement> {
   comment: restaurantTypes.menuCommentProps;
-  onClickMenu?: () => void;
 }
-const Comment = ({
-  id,
-  className,
-  style,
-  children,
-  comment,
-  onClickMenu,
-}: CommentProps) => {
-  const value = useMemo(() => ({ comment, onClickMenu }), [comment]);
+const Comment = ({ id, className, style, children, comment }: CommentProps) => {
+  const value = useMemo(() => ({ comment }), [comment]);
   return (
     <CommentContext.Provider value={value}>
       <CommentWrap id={id} className={className} style={style}>
@@ -56,7 +52,7 @@ const CommentWrap = styled.div`
   width: 100%;
   height: 100%;
   border-bottom: 1px solid var(--gray_7);
-  padding: 10px 0 18px 0;
+  padding: 12px 0 18px 0;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -113,7 +109,7 @@ const DefaultProfileImg = () => {
   return (
     <Image
       alt="profile_img"
-      src="https://image.dongascience.com/Photo/2020/03/15856430426741.jpg"
+      src={comment?.writer.imageUrl || ""}
       width={36}
       height={36}
       style={{ borderRadius: 18, minWidth: 36 }}
@@ -131,7 +127,7 @@ const MyProfileImg = () => {
     >
       <Image
         alt="profile_img"
-        src="https://image.dongascience.com/Photo/2020/03/15856430426741.jpg"
+        src={comment?.writer.imageUrl || ""}
         width={36}
         height={36}
         style={{ borderRadius: 18, minWidth: 36 }}
@@ -152,19 +148,75 @@ const Me = styled.p`
   line-height: 16px;
 `;
 
-const Menu = () => {
-  const { onClickMenu } = useComment();
-  return <MenuIcon onClick={onClickMenu} />;
+interface MenuProps {
+  onClickDelete: () => void;
+}
+const Menu = ({ onClickDelete }: MenuProps) => {
+  const { comment } = useComment();
+
+  const [isOpen, setIsOpen] = useState(false);
+  const handleClickMenu = () => setIsOpen(true);
+  const handleClickDelete = () => {
+    setIsOpen(false);
+    onClickDelete();
+  };
+
+  const router = useRouter();
+  const setComment = useSetRecoilState(states.CommentState);
+  const handleClickEdit = () => {
+    setComment(comment || null);
+    router.push(`/comment/edit`);
+  };
+
+  return (
+    <>
+      <MenuIcon onClick={handleClickMenu} />
+      {isOpen && (
+        <ModalContainer
+          setIsOpen={setIsOpen}
+          style={{ right: 20, marginTop: 28, position: "absolute" }}
+        >
+          <Modal>
+            <button type="button" onClick={handleClickEdit}>
+              수정
+            </button>
+            <button type="button" onClick={handleClickDelete}>
+              삭제
+            </button>
+          </Modal>
+        </ModalContainer>
+      )}
+    </>
+  );
 };
 
 const MenuIcon = styled.button`
   position: absolute;
-  right: 0;
+  right: 17px;
   transform: translateX(-10px);
   outline: none;
   background: url(${menuIcon}) center center / cover;
   width: 20px;
   height: 20px;
+`;
+
+const Modal = styled.div`
+  width: fit-content;
+  height: fit-content;
+  padding: 15px;
+  background-color: var(--white);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+  button {
+    background-color: var(--white);
+    outline: none;
+    font-size: 12px;
+    line-height: 15px;
+  }
 `;
 
 Comment.DefaultProfileImg = DefaultProfileImg;
