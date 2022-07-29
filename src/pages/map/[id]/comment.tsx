@@ -6,9 +6,9 @@ import states from "src/modules/states";
 import nextCookies from "next-cookies";
 
 interface CommentDetailPageProps {
-  nickname: string;
+  email: string;
 }
-const CommentDetailPage = ({ nickname }: CommentDetailPageProps) => {
+const CommentDetailPage = ({ email }: CommentDetailPageProps) => {
   const restaurantInfo = useRecoilValue(states.RestaurantInfoState);
 
   const handleClickDelete = async (cid: number) => {
@@ -20,7 +20,7 @@ const CommentDetailPage = ({ nickname }: CommentDetailPageProps) => {
       comments={restaurantInfo?.comments || []}
       totalScore={restaurantInfo?.stars || 0}
       onClickDelete={handleClickDelete}
-      nickname={nickname}
+      email={email}
     />
   );
 };
@@ -29,10 +29,10 @@ export default CommentDetailPage;
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const allCookies = nextCookies(ctx);
-  const { nickname } = allCookies;
+  const { email } = allCookies;
   return {
     props: {
-      nickname,
+      email,
     },
   };
 };

@@ -7,6 +7,7 @@ import nextCookie from "next-cookies";
 import { ToastMsg } from "src/components/molecules";
 import { useToastMsg } from "src/hooks";
 import { auth } from "src/apis/auth";
+import { saveDataInCookie } from "src/utils";
 
 const SignInPage = () => {
   const { isToastMsgActive, handleToastMsg } = useToastMsg("signinError");
@@ -15,6 +16,9 @@ const SignInPage = () => {
   const handleSignIn = async (params: authTypes.postSignInReqProps) => {
     try {
       const data = await authApi.postSignIn(params);
+      saveDataInCookie("nickname", data.nickname);
+      saveDataInCookie("imageUrl", data.imageUrl);
+      saveDataInCookie("email", data.email);
     } catch (e) {
       handleToastMsg(true);
       return;

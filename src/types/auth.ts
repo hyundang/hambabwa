@@ -1,3 +1,6 @@
+import menuTypes from "./menu";
+import userTypes from "./user";
+
 namespace authTypes {
   export interface postSignUpReqProps {
     email: string;
@@ -20,12 +23,8 @@ namespace authTypes {
     password: string;
   }
 
-  export interface postSignInResProps {
-    email: string;
-    nickname: string;
-    id: number;
-    createdAt: Date;
-    updatedAt: Date;
+  export interface postSignInResProps extends userTypes.userProps {
+    favorites: menuTypes.menuItemProps[];
   }
 }
 

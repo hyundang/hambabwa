@@ -1,61 +1,81 @@
 import { GetServerSideProps } from "next";
 import { RestaurantDetail } from "src/components/templates";
-import { restaurantTypes } from "src/types";
-import { client, restaurantApi, userApi } from "src/apis";
-import { auth } from "src/apis/auth";
+import { restaurantApi, userApi } from "src/apis";
 import nextCookies from "next-cookies";
 import { useSetRecoilState } from "recoil";
 import states from "src/modules/states";
-import { useEffect } from "react";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useRouter } from "next/router";
 
 interface MapDetailProps {
-  restaurantInfo: restaurantTypes.restaurantProps;
   nickname: string;
+  email: string;
 }
-const MapDetail = ({ restaurantInfo, nickname }: MapDetailProps) => {
+const MapDetail = ({ nickname, email }: MapDetailProps) => {
+  const router = useRouter();
+  const setRestaurantInfo = useSetRecoilState(states.RestaurantInfoState);
+  const {
+    isLoading,
+    isError,
+    data: restaurantInfo,
+  } = useQuery(
+    "restaurantInfo",
+    () => restaurantApi.getRestaurantById(`${router.query.id}`),
+    {
+      onSuccess: (data) => setRestaurantInfo(data),
+    }
+  );
+
+  const queryClient = useQueryClient();
+  const profileMutation = useMutation(userApi.patchProfileListById, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("restaurantInfo");
+    },
+  });
   const handleLikeMenu = async (menuId: number) => {
-    await userApi.patchProfileListById(menuId);
+    profileMutation.mutate(menuId);
+  };
+
+  const commentMutation = useMutation(restaurantApi.deleteComment, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("restaurantInfo");
+    },
+  });
+  const handleClickDelete = async (cid: number) => {
+    commentMutation.mutate(cid);
   };
 
   const setScore = useSetRecoilState(states.CommentScoreState);
 
-  const setRestaurantInfo = useSetRecoilState(states.RestaurantInfoState);
-  useEffect(() => {
-    setRestaurantInfo(restaurantInfo);
-  }, []);
-
-  const handleClickDelete = async (cid: number) => {
-    await restaurantApi.deleteComment(cid);
-  };
-
-  return (
-    <RestaurantDetail
-      restaurantInfo={restaurantInfo}
-      nickname={nickname}
-      onLikeMenu={handleLikeMenu}
-      onChangeScore={setScore}
-      onClickCommentDelete={handleClickDelete}
-    />
-  );
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
+  if (isError) {
+    throw new Error("error");
+  }
+  if (restaurantInfo)
+    return (
+      <RestaurantDetail
+        restaurantInfo={restaurantInfo}
+        nickname={nickname}
+        email={email}
+        onLikeMenu={handleLikeMenu}
+        onChangeScore={setScore}
+        onClickCommentDelete={handleClickDelete}
+      />
+    );
 };
 
 export default MapDetail;
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const allCookies = nextCookies(ctx);
-  const { nickname } = allCookies;
+  const { nickname, email } = allCookies;
 
-  if (ctx.req.headers.cookie) {
-    auth.defaults.headers.common.Cookie = ctx.req.headers.cookie;
-    client.defaults.headers.common.Cookie = ctx.req.headers.cookie;
-  }
-  const restaurantInfo = await restaurantApi.getRestaurantById(
-    `${ctx.query.id}`
-  );
   return {
     props: {
-      restaurantInfo,
       nickname,
+      email,
     },
   };
 };

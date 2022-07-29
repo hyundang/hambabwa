@@ -1,8 +1,10 @@
 import { AxiosError } from "axios";
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { categoryApi, menuApi, userApi } from "src/apis";
+import { categoryApi, client, menuApi, userApi } from "src/apis";
+import { auth } from "src/apis/auth";
 import { selectedMenuProps } from "src/components/organisms/chooseCategory";
 import { Profile } from "src/components/templates";
 import { categoryTypes, menuTypes } from "src/types";
@@ -42,8 +44,6 @@ const ProfilePage = ({ categoryList }: ProfilePageProps) => {
     });
     const data = await userApi.postProfileList({ menuIds: body.join(",") });
     saveDataInCookie("isProfileWritten", true);
-    saveDataInCookie("nickname", data.nickname);
-    saveDataInCookie("imageUrl", data.imageUrl);
     router.replace("/map");
   };
 
@@ -62,7 +62,11 @@ const ProfilePage = ({ categoryList }: ProfilePageProps) => {
 
 export default ProfilePage;
 
-export const getServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  if (req.headers.cookie) {
+    auth.defaults.headers.common.Cookie = req.headers.cookie;
+    client.defaults.headers.common.Cookie = req.headers.cookie;
+  }
   const categoryList = await categoryApi.getCategory();
   return {
     props: {
