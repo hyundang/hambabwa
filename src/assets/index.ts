@@ -15,3 +15,7 @@ export { default as emptyHeartIcon } from "./icn_heart_empty.svg";
 export { default as profileImg } from "./img_profile.svg";
 export { default as menuIcon } from "./icn_menu.svg";
 export { default as tagIcon } from "./icn_tag.svg";
+export { default as cancelIcon } from "./icn_cancel.svg";
+export { default as cameraIcon } from "./icn_camera.svg";
+export { default as closeIcon } from "./icn_close.svg";
+export { default as editIcon } from "./icn_edit.svg";
