@@ -2,6 +2,17 @@ import { restaurantTypes } from "src/types";
 import { apiRequest } from "src/utils";
 import client from "./client";
 
+const getRestaurants = async (): Promise<
+  restaurantTypes.defaultRestaurntProps[]
+> => {
+  const data = await apiRequest({
+    axios: client,
+    url: `/restaurant`,
+    type: "get",
+  });
+  return data;
+};
+
 const getRestaurantById = async (
   restaurantId: string
 ): Promise<restaurantTypes.restaurantProps> => {
@@ -50,6 +61,7 @@ const deleteComment = async (
 };
 
 const restaurantApi = {
+  getRestaurants,
   getRestaurantById,
   postComment,
   patchComment,

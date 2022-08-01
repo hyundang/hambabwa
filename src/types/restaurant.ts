@@ -16,11 +16,11 @@ namespace restaurantTypes {
     lng: number;
     imageUrl: string;
     lunchPrice: number;
+    menus: menuTypes.menuDetailProps[];
   }
 
   export interface restaurantProps extends defaultRestaurntProps {
     comments: menuCommentProps[];
-    menus: menuTypes.menuDetailProps[];
     hasCommented: boolean;
   }
 
