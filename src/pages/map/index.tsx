@@ -14,7 +14,7 @@ const MapPage = ({ imageUrl }: MapPageProps) => {
     isLoading,
     isError,
     data: restaurants,
-  } = useQuery("myComments", restaurantApi.getRestaurants);
+  } = useQuery("restaurants", restaurantApi.getRestaurants);
 
   const { isToastMsgActive, handleToastMsg } = useToastMsg("copyToClipboard");
 
