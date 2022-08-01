@@ -9,3 +9,4 @@ export { default as Comment } from "./comment";
 export { default as AskComment } from "./askComment";
 export { default as WriteComment } from "./writeComment";
 export { default as ConfirmModal } from "./confirmModal";
+export { default as ProfileForm } from "./profileForm";
