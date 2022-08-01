@@ -1,23 +1,26 @@
 import Image from "next/image";
+import styled from "styled-components";
 
 interface ProfileImgProps {
   src: string;
   size: number;
+  onClick?: () => void;
 }
-const ProfileImg = ({ src, size }: ProfileImgProps) => {
+const ProfileImg = ({ src, size, onClick }: ProfileImgProps) => {
   return (
-    <Image
+    <StyledImage
       alt="profile_img"
-      className="profile_img"
       src={src}
       width={size}
       height={size}
-      style={{
-        borderRadius: "50%",
-        border: "4px solid var(--red_2)",
-      }}
+      onClick={onClick}
     />
   );
 };
 
 export default ProfileImg;
+
+const StyledImage = styled(Image)`
+  border: 4px solid var(--red_2) !important;
+  border-radius: 50%;
+`;
