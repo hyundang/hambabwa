@@ -1,5 +1,5 @@
 import { ComponentMeta } from "@storybook/react";
-import { restaurantData } from "src/mocks/data";
+import { restaurantData, userData } from "src/mocks/data";
 import Comment from ".";
 
 export default {
@@ -18,6 +18,7 @@ export default {
 export const DefaultComment = () => (
   <Comment comment={restaurantData.getComments[0]}>
     <Comment.DefaultProfileImg />
+    <Comment.DefaultContent />
   </Comment>
 );
 
@@ -25,11 +26,13 @@ export const MyComment = () => (
   <Comment comment={restaurantData.getComments[0]}>
     <Comment.MyProfileImg />
     <Comment.Menu onClickDelete={() => "hi"} />
+    <Comment.DefaultContent />
   </Comment>
 );
 
 export const MyPageComment = () => (
-  <Comment comment={restaurantData.getComments[0]}>
+  <Comment comment={userData.getMyComment}>
     <Comment.Menu onClickDelete={() => "hi"} />
+    <Comment.MyContent />
   </Comment>
 );

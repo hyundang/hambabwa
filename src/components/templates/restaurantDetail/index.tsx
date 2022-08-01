@@ -115,7 +115,8 @@ interface ProfileWrapProps {
 const ProfileWrap = styled.section<ProfileWrapProps>`
   width: 100%;
   height: 365px;
-  background: url(${({ src }) => src}) center center / cover, var(--gray_7);
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url(${({ src }) => src}) center center / cover, var(--gray_7);
   padding: 33px;
   display: flex;
   align-items: flex-end;

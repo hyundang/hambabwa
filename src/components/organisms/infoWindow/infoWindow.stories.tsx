@@ -15,9 +15,11 @@ export default {
   },
 } as ComponentMeta<typeof InfoWindow>;
 
-const Template: ComponentStory<typeof InfoWindow> = (args) => <InfoWindow {...args} />;
+const Template: ComponentStory<typeof InfoWindow> = (args) => (
+  <InfoWindow {...args} />
+);
 
 export const DefaultInfoWindow = Template.bind({});
 DefaultInfoWindow.args = {
-    restaurantInfo: restaurantData.getRestaurants[0]
+  restaurantInfo: restaurantData.getRestaurants[0],
 };

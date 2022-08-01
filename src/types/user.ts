@@ -1,5 +1,6 @@
-// eslint-disable-next-line import/no-cycle
+/* eslint-disable import/no-cycle */
 import menuTypes from "./menu";
+import restaurantTypes from "./restaurant";
 
 namespace userTypes {
   export interface postProfileListReqProps {
@@ -17,6 +18,19 @@ namespace userTypes {
   }
 
   export interface postProfileListResProps extends userProps {
+    favorites: menuTypes.menuItemProps[];
+  }
+  export interface myCommentProps extends restaurantTypes.defaultCommentProps {
+    restaurant: restaurantTypes.defaultRestaurntProps;
+  }
+  export interface getMyCommentsResProps extends userProps {
+    comments: myCommentProps[];
+  }
+  export interface postMyProfileReqProps {
+    nickname: string;
+    imageUrl: File;
+  }
+  export interface postMyProfileResProps extends userProps {
     favorites: menuTypes.menuItemProps[];
   }
 }
