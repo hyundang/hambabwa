@@ -7,6 +7,7 @@ interface apiRequestProps {
   type: "get" | "post" | "put" | "delete" | "patch";
   body?: object;
   params?: any;
+  headers?: any;
 }
 
 const getResponse = async ({
@@ -15,23 +16,24 @@ const getResponse = async ({
   type,
   body,
   params,
+  headers,
 }: apiRequestProps) => {
   let res;
   switch (type) {
     case "get":
-      res = await axios.get(url, { params });
+      res = await axios.get(url, { params, headers });
       break;
     case "post":
-      res = await axios.post(url, body, { params });
+      res = await axios.post(url, body, { params, headers });
       break;
     case "put":
-      res = await axios.put(url, body, { params });
+      res = await axios.put(url, body, { params, headers });
       break;
     case "patch":
-      res = await axios.patch(url, body, { params });
+      res = await axios.patch(url, body, { params, headers });
       break;
     case "delete":
-      res = await axios.delete(url, { params });
+      res = await axios.delete(url, { params, headers });
       break;
     default:
   }

@@ -20,12 +20,18 @@ namespace userTypes {
   export interface postProfileListResProps extends userProps {
     favorites: menuTypes.menuItemProps[];
   }
-
   export interface myCommentProps extends restaurantTypes.defaultCommentProps {
     restaurant: restaurantTypes.defaultRestaurntProps;
   }
   export interface getMyCommentsResProps extends userProps {
     comments: myCommentProps[];
+  }
+  export interface postMyProfileReqProps {
+    nickname: string;
+    imageUrl: File;
+  }
+  export interface postMyProfileResProps extends userProps {
+    favorites: menuTypes.menuItemProps[];
   }
 }
 
