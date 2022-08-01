@@ -1,5 +1,4 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { useEffect, useState } from "react";
 import { restaurantData } from "src/mocks/data";
 import Map from ".";
 

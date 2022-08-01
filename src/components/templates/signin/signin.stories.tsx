@@ -1,6 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { within, userEvent } from "@storybook/testing-library";
-import { useState } from "react";
 import SiginIn from ".";
 
 export default {

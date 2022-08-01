@@ -42,7 +42,7 @@ const ProfilePage = ({ categoryList }: ProfilePageProps) => {
     menus.forEach((menu) => {
       body = [...body, ...menu.menuCodes];
     });
-    const data = await userApi.postProfileList({ menuIds: body.join(",") });
+    await userApi.postProfileList({ menuIds: body.join(",") });
     saveDataInCookie("isProfileWritten", true);
     router.replace("/map");
   };

@@ -1,5 +1,5 @@
 /* global kakao */
-import { HTMLAttributes, useRef, useState } from "react";
+import { HTMLAttributes, useState } from "react";
 import styled from "styled-components";
 import {
   CustomOverlayMap,
@@ -20,7 +20,7 @@ const Map = ({ id, className, style, restaurants }: MapProps) => {
   const [clickedRestaurant, setClickedRestaurant] = useState(restaurants[0]);
   const handleClickMarker = (idx: number) => () =>
     setClickedRestaurant(restaurants[idx]);
-    
+
   const { loading, error } = useInjectKakaoMapApi({
     // appkey: KAKAO_APP_KEY,
     appkey: "42900bbf92e9614e3ca61f90600d2c97",
