@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { createContext, HTMLAttributes, useContext, useMemo } from "react";
 import { Star } from "src/components/atoms";
-import { MenuIcon, MyProfileImg as ProfileImg } from "src/components/molecules";
+import { MenuIcon, ImgWithBadge as ProfileImg } from "src/components/molecules";
 import { restaurantTypes, userTypes } from "src/types";
 import styled from "styled-components";
 
@@ -62,9 +62,27 @@ const DefaultProfileImg = () => {
 const MyProfileImg = () => {
   const { comment } = useComment();
   if (comment && "writer" in comment)
-    return <ProfileImg imageUrl={comment?.writer.imageUrl || ""} size={36} />;
+    return (
+      <ProfileImg
+        imageUrl={comment?.writer.imageUrl || ""}
+        size={36}
+        badgeContent={<Me>나</Me>}
+      />
+    );
   return <div />;
 };
+
+const Me = styled.p`
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--white);
+  background-color: var(--red_1);
+  font-size: 10px;
+  color: var(--white);
+  text-align: center;
+  line-height: 16px;
+`;
 
 const Menu = ({ onClickDelete }: { onClickDelete: () => void }) => {
   const { comment } = useComment();
