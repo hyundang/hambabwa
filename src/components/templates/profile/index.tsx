@@ -8,6 +8,7 @@ import styled from "styled-components";
 
 interface ProfileProps extends ChooseCategoryProps {
   onClickNext: () => void;
+  isMyPage?: boolean;
 }
 const Profile = ({
   categoryList,
@@ -17,6 +18,7 @@ const Profile = ({
   selectedMenus,
   setSelectedMenus,
   onClickNext,
+  isMyPage = false,
 }: ProfileProps) => {
   const returnSelectedCategories = () =>
     selectedMenus
@@ -43,7 +45,7 @@ const Profile = ({
         />
       </InnerContainer>
       <StyledButton isActive={isBtnActive} onClick={onClickNext}>
-        다음
+        {isMyPage ? "완료" : "다음"}
       </StyledButton>
     </PageContainer>
   );
