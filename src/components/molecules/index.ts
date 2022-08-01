@@ -8,3 +8,4 @@ export { default as ModalContainer } from "./modalContainer";
 export { default as Score } from "./score";
 export { default as ImgWithBadge } from "./imgWithBadge";
 export { default as MenuIcon } from "./menuIcon";
+export { default as InputCancel } from "./inputCancel";
