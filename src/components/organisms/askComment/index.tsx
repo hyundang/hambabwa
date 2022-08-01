@@ -1,12 +1,12 @@
 import Image from "next/image";
 import { HTMLAttributes } from "react";
-import { profileImg } from "src/assets";
 import { Star } from "src/components/atoms";
 import styled from "styled-components";
 
 interface AskCommentProps extends HTMLAttributes<HTMLDivElement> {
   onChangeScore: (score: number) => void;
   nickname: string;
+  imageUrl: string;
 }
 const AskComment = ({
   id,
@@ -14,12 +14,13 @@ const AskComment = ({
   style,
   onChangeScore,
   nickname,
+  imageUrl,
 }: AskCommentProps) => {
   return (
     <AskCommentWrap id={id} className={className} style={style}>
       <Image
         alt="profile_img"
-        src={profileImg}
+        src={imageUrl}
         width={42}
         height={42}
         style={{ borderRadius: 21 }}

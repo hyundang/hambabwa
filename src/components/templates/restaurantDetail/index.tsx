@@ -12,6 +12,7 @@ interface RestaurantDetailProps {
   onLikeMenu: (menuId: number) => void;
   nickname: string;
   email: string;
+  imageUrl: string;
   onChangeScore: (score: number) => void;
   onClickCommentDelete: (cid: number) => void;
 }
@@ -20,6 +21,7 @@ const RestaurantDetail = ({
   onLikeMenu,
   nickname,
   email,
+  imageUrl,
   onChangeScore,
   onClickCommentDelete,
 }: RestaurantDetailProps) => {
@@ -56,7 +58,11 @@ const RestaurantDetail = ({
         <>
           <DivideSection />
           <AskCommentWrap>
-            <AskComment onChangeScore={handleChangeScore} nickname={nickname} />
+            <AskComment
+              onChangeScore={handleChangeScore}
+              nickname={nickname}
+              imageUrl={imageUrl}
+            />
           </AskCommentWrap>
         </>
       )}
@@ -115,7 +121,7 @@ interface ProfileWrapProps {
 const ProfileWrap = styled.section<ProfileWrapProps>`
   width: 100%;
   height: 365px;
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url(${({ src }) => src}) center center / cover, var(--gray_7);
   padding: 33px;
   display: flex;
