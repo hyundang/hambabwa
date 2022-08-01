@@ -6,5 +6,5 @@ export { default as Categories } from "./categories";
 export { default as ToastMsg } from "./toastMsg";
 export { default as ModalContainer } from "./modalContainer";
 export { default as Score } from "./score";
-export { default as MyProfileImg } from "./myProfileImg";
+export { default as ImgWithBadge } from "./imgWithBadge";
 export { default as MenuIcon } from "./menuIcon";
