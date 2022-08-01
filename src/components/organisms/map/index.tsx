@@ -1,5 +1,5 @@
 /* global kakao */
-import { HTMLAttributes, useRef } from "react";
+import { HTMLAttributes, useRef, useState } from "react";
 import styled from "styled-components";
 import {
   CustomOverlayMap,
@@ -7,33 +7,49 @@ import {
   useInjectKakaoMapApi,
 } from "react-kakao-maps-sdk";
 import { useWindowSize } from "src/hooks";
-import { pinIcon } from "src/assets";
 import InfoWindow from "src/components/organisms/infoWindow";
-import { restaurantData } from "src/mocks/data";
 import { MapMarker } from "src/components/atoms";
+import { restaurantTypes } from "src/types";
 
 interface MapProps extends HTMLAttributes<HTMLDivElement> {
-  hi?: boolean;
+  restaurants: restaurantTypes.defaultRestaurntProps[];
 }
-const Map = ({ id, className, style, hi }: MapProps) => {
+const Map = ({ id, className, style, restaurants }: MapProps) => {
   const { height } = useWindowSize();
 
+  const [clickedRestaurant, setClickedRestaurant] = useState(restaurants[0]);
+  const handleClickMarker = (idx: number) => () =>
+    setClickedRestaurant(restaurants[idx]);
+    
   const { loading, error } = useInjectKakaoMapApi({
-    appkey: KAKAO_APP_KEY,
+    // appkey: KAKAO_APP_KEY,
+    appkey: "42900bbf92e9614e3ca61f90600d2c97",
   });
   if (loading) return <div>loading</div>;
   if (error) throw new Error("map error");
   return (
     <MapWrap id={id} className={className} style={style}>
       <KaKaoMap
-        center={{ lat: 33.5563, lng: 126.79581 }}
+        center={{
+          lat: clickedRestaurant.lat + 0.0002,
+          lng: clickedRestaurant.lng,
+        }}
         style={{ width: "100%", height }}
         level={1}
       >
-        <MapMarker lat={33.5563} lng={126.79581} />
-        <CustomOverlayMap position={{ lat: 33.5563, lng: 126.79581 }}>
+        {restaurants.map((restaurant, idx) => (
+          <MapMarker
+            key={restaurant.id}
+            lat={restaurant.lat}
+            lng={restaurant.lng}
+            onClick={handleClickMarker(idx)}
+          />
+        ))}
+        <CustomOverlayMap
+          position={{ lat: clickedRestaurant.lat, lng: clickedRestaurant.lng }}
+        >
           <InfoWindowWrap>
-            <InfoWindow restaurantInfo={restaurantData.getRestaurant[0]} />
+            <InfoWindow restaurantInfo={clickedRestaurant} />
           </InfoWindowWrap>
         </CustomOverlayMap>
       </KaKaoMap>

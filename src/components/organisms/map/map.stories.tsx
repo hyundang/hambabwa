@@ -1,5 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { useEffect, useState } from "react";
+import { restaurantData } from "src/mocks/data";
 import Map from ".";
 
 export default {
@@ -18,4 +19,6 @@ export default {
 const Template: ComponentStory<typeof Map> = (args) => <Map {...args} />;
 
 export const DefaultMap = Template.bind({});
-DefaultMap.args = {};
+DefaultMap.args = {
+  restaurants: restaurantData.getDefaultRestaurants,
+};

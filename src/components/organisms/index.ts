@@ -11,3 +11,4 @@ export { default as WriteComment } from "./writeComment";
 export { default as ConfirmModal } from "./confirmModal";
 export { default as ProfileForm } from "./profileForm";
 export { default as ProfileEditModal } from "./profileEditModal";
+export { default as Map } from "./map";
