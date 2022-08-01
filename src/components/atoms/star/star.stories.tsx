@@ -32,6 +32,18 @@ EmptyStar.args = {
   defaultValue: 0,
 };
 
+export const GrayStar = Template.bind({});
+GrayStar.args = {
+  defaultValue: 0,
+  isGray: true,
+};
+
+export const RedStar = Template.bind({});
+RedStar.args = {
+  defaultValue: 0,
+  isRed: true,
+};
+
 export const CustomSizeStar = Template.bind({});
 CustomSizeStar.args = {
   defaultValue: 3,

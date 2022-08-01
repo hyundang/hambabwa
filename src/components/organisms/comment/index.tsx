@@ -94,7 +94,7 @@ const DefaultContent = () => {
   if (comment && "writer" in comment)
     return (
       <ContentWrap>
-        <Star defaultValue={comment?.stars || 0} readOnly size={10} />
+        <Star defaultValue={comment?.stars || 0} readOnly size={10} isRed />
         <div className="text_wrap" style={{ marginTop: 3 }}>
           <p className="nickname">{comment?.writer?.nickname}&nbsp;</p>
           <p className="date">
@@ -114,7 +114,7 @@ const MyContent = () => {
       <ContentWrap>
         <p className="restaurant">{comment?.restaurant.name}</p>
         <div className="text_wrap">
-          <Star defaultValue={comment?.stars || 0} readOnly size={9} />
+          <Star defaultValue={comment?.stars || 0} readOnly size={9} isRed />
           <p className="date">
             &nbsp;| {comment?.createdAt.slice(0, 10).replaceAll("-", ".")}
           </p>

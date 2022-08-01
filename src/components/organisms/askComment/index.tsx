@@ -28,7 +28,7 @@ const AskComment = ({
       <p className="text">
         <b>{nickname}</b>님의 후기를 남겨주세요.
       </p>
-      <Star defaultValue={0} onChange={onChangeScore} size={46} />
+      <Star defaultValue={0} onChange={onChangeScore} size={46} isRed isGray />
     </AskCommentWrap>
   );
 };
