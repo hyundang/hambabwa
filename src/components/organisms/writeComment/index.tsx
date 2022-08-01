@@ -19,7 +19,13 @@ const WriteComment = ({
 }: WriteCommentProps) => {
   return (
     <WriteCommentWrap id={id} className={className} style={style}>
-      <Star defaultValue={score} onChange={onChangeScore} size={40} />
+      <Star
+        defaultValue={score}
+        onChange={onChangeScore}
+        size={40}
+        isRed
+        isGray
+      />
       <p className="score">
         {score}
         <b> / 5</b>

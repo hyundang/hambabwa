@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { emptyPinIcon, tagIcon } from "src/assets";
+import { Header } from "src/components/molecules";
 import { AskComment } from "src/components/organisms";
 import { restaurantTypes } from "src/types";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import CommentList from "../commentList";
 import MenuInfoList from "../menuInfoList";
 
@@ -12,6 +14,7 @@ interface RestaurantDetailProps {
   onLikeMenu: (menuId: number) => void;
   nickname: string;
   email: string;
+  imageUrl: string;
   onChangeScore: (score: number) => void;
   onClickCommentDelete: (cid: number) => void;
 }
@@ -20,6 +23,7 @@ const RestaurantDetail = ({
   onLikeMenu,
   nickname,
   email,
+  imageUrl,
   onChangeScore,
   onClickCommentDelete,
 }: RestaurantDetailProps) => {
@@ -29,8 +33,27 @@ const RestaurantDetail = ({
     router.push(`/comment/${router.query.id}`);
   };
 
+  const [isScrollActive, setIsScrollActive] = useState(false);
+  const handleScroll = () => {
+    if (window.scrollY > 180) setIsScrollActive(true);
+    else setIsScrollActive(false);
+  };
+  useEffect(() => {
+    const scrollListener = () =>
+      window.addEventListener("scroll", handleScroll);
+    scrollListener();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <RestaurantDetailWrap>
+      <StyledHeader
+        isBackActive
+        title={isScrollActive ? restaurantInfo.name : ""}
+        isScrollActive={isScrollActive}
+      >
+        <Header.ProfileImg imageUrl={imageUrl} />
+      </StyledHeader>
       <ProfileWrap src={restaurantInfo.imageUrl}>
         <div className="profile">
           <p className="name">{restaurantInfo.name}</p>
@@ -56,7 +79,11 @@ const RestaurantDetail = ({
         <>
           <DivideSection />
           <AskCommentWrap>
-            <AskComment onChangeScore={handleChangeScore} nickname={nickname} />
+            <AskComment
+              onChangeScore={handleChangeScore}
+              nickname={nickname}
+              imageUrl={imageUrl}
+            />
           </AskCommentWrap>
         </>
       )}
@@ -109,13 +136,38 @@ const RestaurantDetailWrap = styled.div`
   height: 100%;
 `;
 
+interface HeaderProps {
+  isScrollActive: boolean;
+}
+const StyledHeader = styled(Header)<HeaderProps>`
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  padding: 50px 23px 0 27px;
+  box-shadow: none;
+  ${({ isScrollActive }) =>
+    isScrollActive
+      ? css`
+          background-color: var(--white);
+        `
+      : css`
+          background-color: unset;
+          .back_icon {
+            path {
+              fill: var(--white);
+            }
+          }
+        `};
+`;
+
 interface ProfileWrapProps {
   src?: string;
 }
 const ProfileWrap = styled.section<ProfileWrapProps>`
   width: 100%;
   height: 365px;
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url(${({ src }) => src}) center center / cover, var(--gray_7);
   padding: 33px;
   display: flex;

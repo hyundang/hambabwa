@@ -44,7 +44,7 @@ const ProfilePage = ({ categoryList, favorites }: ProfilePageProps) => {
     menus.forEach((menu) => {
       body = [...body, ...menu.menuCodes];
     });
-    const data = await userApi.postProfileList({ menuIds: body.join(",") });
+    await userApi.postProfileList({ menuIds: body.join(",") });
     router.back();
   };
 

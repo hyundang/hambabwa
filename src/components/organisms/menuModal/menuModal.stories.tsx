@@ -2,7 +2,6 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { within, userEvent } from "@storybook/testing-library";
 import { useEffect, useState } from "react";
 import { menuData } from "src/mocks/data";
-import { menuTypes } from "src/types";
 import MenuMoal from ".";
 
 export default {

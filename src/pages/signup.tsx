@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import { useRecoilState } from "recoil";
 import { authApi } from "src/apis";
 import { ToastMsg } from "src/components/molecules";
 import { SignUp } from "src/components/templates";
@@ -15,7 +14,7 @@ const SignUpPage = () => {
   ) => {
     if ("nickname" in params) {
       try {
-        const res = await authApi.postSignUp(params);
+        await authApi.postSignUp(params);
       } catch (e) {
         handleToastMsg(true);
         return;

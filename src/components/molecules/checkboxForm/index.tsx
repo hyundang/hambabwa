@@ -1,8 +1,6 @@
 import { InputHTMLAttributes } from "react";
-import { Input } from "src/components/atoms";
 import CheckBox from "src/components/atoms/checkbox";
 import styled from "styled-components";
-import Password from "../password";
 
 interface CheckboxFormProps extends InputHTMLAttributes<HTMLInputElement> {
   text: string;

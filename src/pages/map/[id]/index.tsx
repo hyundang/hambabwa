@@ -10,8 +10,9 @@ import { useRouter } from "next/router";
 interface MapDetailProps {
   nickname: string;
   email: string;
+  imageUrl: string;
 }
-const MapDetail = ({ nickname, email }: MapDetailProps) => {
+const MapDetail = ({ nickname, email, imageUrl }: MapDetailProps) => {
   const router = useRouter();
   const setRestaurantInfo = useSetRecoilState(states.RestaurantInfoState);
   const {
@@ -59,6 +60,7 @@ const MapDetail = ({ nickname, email }: MapDetailProps) => {
         restaurantInfo={restaurantInfo}
         nickname={nickname}
         email={email}
+        imageUrl={imageUrl}
         onLikeMenu={handleLikeMenu}
         onChangeScore={setScore}
         onClickCommentDelete={handleClickDelete}
@@ -70,12 +72,13 @@ export default MapDetail;
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const allCookies = nextCookies(ctx);
-  const { nickname, email } = allCookies;
+  const { nickname, email, imageUrl } = allCookies;
 
   return {
     props: {
       nickname,
       email,
+      imageUrl,
     },
   };
 };

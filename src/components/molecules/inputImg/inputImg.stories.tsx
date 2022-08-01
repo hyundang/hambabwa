@@ -1,5 +1,4 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { useInput } from "src/hooks";
 import InputImg from ".";
 
 export default {
@@ -15,13 +14,11 @@ export default {
   },
 } as ComponentMeta<typeof InputImg>;
 
-const Template: ComponentStory<typeof InputImg> = (args) => {
-  const { value, onChange, setValue } = useInput("");
-  return <InputImg {...args} />;
-};
+const Template: ComponentStory<typeof InputImg> = (args) => (
+  <InputImg {...args} />
+);
 
 export const DefaultInputImg = Template.bind({});
 DefaultInputImg.args = {
   placeholder: "닉네임을 입력해주세요.",
-  left: 250,
 };

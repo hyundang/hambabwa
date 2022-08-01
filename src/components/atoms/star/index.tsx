@@ -1,18 +1,23 @@
 import { Rating } from "@mui/material";
 import { SyntheticEvent } from "react";
-import { emptyStarIcon, starIcon } from "src/assets";
+import { EmptyStarIcon, StarIcon } from "src/assets";
+import styled from "styled-components";
 
 interface StarProps {
   size?: number;
   readOnly?: boolean;
   defaultValue: number | null;
   onChange?: (value: number) => void;
+  isGray?: boolean;
+  isRed?: boolean;
 }
 const Star = ({
   defaultValue,
   readOnly = false,
   size = 21,
   onChange,
+  isGray = false,
+  isRed = false,
 }: StarProps) => {
   const handleChange = (
     event: SyntheticEvent<Element, Event>,
@@ -27,18 +32,35 @@ const Star = ({
       defaultValue={defaultValue !== null ? defaultValue : 0}
       precision={0.5}
       icon={
-        <img
-          src={starIcon}
-          alt="star"
-          style={{ width: `${size}px`, height: `${size}px` }}
-        />
+        isRed ? (
+          <RedStarIcon
+            className="star"
+            style={{ width: `${size}px`, height: `${size}px` }}
+          />
+        ) : (
+          <StarIcon
+            className="star"
+            style={{ width: `${size}px`, height: `${size}px` }}
+          />
+        )
       }
       emptyIcon={
-        <img
-          src={emptyStarIcon}
-          alt="star_empty"
-          style={{ width: `${size}px`, height: `${size}px` }}
-        />
+        isGray ? (
+          <GrayStarIcon
+            className="star_empty"
+            style={{ width: `${size}px`, height: `${size}px` }}
+          />
+        ) : isRed ? (
+          <RedEmptyStarIcon
+            className="star_empty"
+            style={{ width: `${size}px`, height: `${size}px` }}
+          />
+        ) : (
+          <EmptyStarIcon
+            className="star_empty"
+            style={{ width: `${size}px`, height: `${size}px` }}
+          />
+        )
       }
       onChange={handleChange}
     />
@@ -46,3 +68,21 @@ const Star = ({
 };
 
 export default Star;
+
+const RedStarIcon = styled(StarIcon)`
+  path {
+    fill: var(--red_1);
+  }
+`;
+
+const RedEmptyStarIcon = styled(EmptyStarIcon)`
+  path {
+    fill: var(--red_1);
+  }
+`;
+
+const GrayStarIcon = styled(StarIcon)`
+  path {
+    fill: var(--gray_7);
+  }
+`;

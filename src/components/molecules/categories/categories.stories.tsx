@@ -1,6 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { useEffect, useState } from "react";
-import { categoryData, menuData } from "src/mocks/data";
+import { categoryData } from "src/mocks/data";
 import Categories from ".";
 
 export default {

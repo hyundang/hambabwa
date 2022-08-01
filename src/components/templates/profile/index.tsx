@@ -32,7 +32,7 @@ const Profile = ({
   }, [selectedMenus]);
 
   return (
-    <PageContainer title="선호음식" isBackActive>
+    <PageContainer title="선호음식" isBackActive style={{ paddingBottom: 0 }}>
       <InnerContainer>
         <Image src={logoImg} alt="logo" width={129} height={123} priority />
         <ChooseCategory

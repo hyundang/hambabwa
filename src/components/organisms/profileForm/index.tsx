@@ -17,10 +17,10 @@ const ProfileForm = ({
     <ProfileFormWrap>
       <ImgWithBadge
         imageUrl={imageUrl}
-        size={72}
+        size={100}
         badgeContent={
           <EditIcon onClick={onClickEditIcon}>
-            <img src={editIcon} style={{ width: 19, height: 19 }} />
+            <img src={editIcon} style={{ width: 22, height: 22 }} />
           </EditIcon>
         }
       />
@@ -46,8 +46,8 @@ const ProfileFormWrap = styled.section`
 `;
 
 const EditIcon = styled(Icon)`
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 22px;
   background-color: var(--red_2);
 `;
