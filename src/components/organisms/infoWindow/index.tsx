@@ -5,9 +5,10 @@ import { restaurantTypes } from "src/types";
 import styled from "styled-components";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { ProfileImg, Star } from "src/components/atoms";
+import { useToastMsg } from "src/hooks";
 
 interface InfoWindowProps extends HTMLAttributes<HTMLDivElement> {
-  restaurantInfo: restaurantTypes.restaurantProps;
+  restaurantInfo: restaurantTypes.defaultRestaurntProps;
 }
 const InfoWindow = ({
   id,
@@ -15,6 +16,7 @@ const InfoWindow = ({
   style,
   restaurantInfo,
 }: InfoWindowProps) => {
+  const { handleToastMsg } = useToastMsg("copyToClipboard");
   return (
     <InfoWindowWrap id={id} className={className} style={style}>
       <TitleWrap>
@@ -39,7 +41,7 @@ const InfoWindow = ({
         <p className="address">{restaurantInfo.addr1 + restaurantInfo.addr2}</p>
         <CopyToClipboard
           text={`${restaurantInfo.addr1} ${restaurantInfo.addr2}`}
-          // onCopy={}
+          onCopy={() => handleToastMsg(true)}
         >
           <button className="copy" type="button">
             <img src={copyIcon} alt="copy_icon" />
@@ -133,6 +135,7 @@ const AddressWrap = styled.div`
     height: 16px;
     line-height: 16px;
     display: block;
+    text-align: center;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
