@@ -4,8 +4,9 @@ import { pinIcon } from "src/assets";
 interface MapMarkerProps {
   lat: number;
   lng: number;
+  onClick: () => void;
 }
-const MapMarker = ({ lat, lng }: MapMarkerProps) => {
+const MapMarker = ({ lat, lng, onClick }: MapMarkerProps) => {
   return (
     <KakaoMapMarker
       position={{ lat, lng }}
@@ -16,6 +17,7 @@ const MapMarker = ({ lat, lng }: MapMarkerProps) => {
           height: 27,
         },
       }}
+      onClick={onClick}
     />
   );
 };
