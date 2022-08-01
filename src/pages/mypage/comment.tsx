@@ -8,7 +8,7 @@ const MyCommentPage = () => {
     isError,
     data: comments,
   } = useQuery("myComments", userApi.getMyComments);
-  
+
   const queryClient = useQueryClient();
   const commentMutation = useMutation(restaurantApi.deleteComment, {
     onSuccess: () => {

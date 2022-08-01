@@ -35,5 +35,5 @@ EmptyStar.args = {
 export const CustomSizeStar = Template.bind({});
 CustomSizeStar.args = {
   defaultValue: 3,
-  size: 50
+  size: 50,
 };

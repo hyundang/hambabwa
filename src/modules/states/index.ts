@@ -20,7 +20,9 @@ const CommentScoreState = atom<number>({
   default: 0,
 });
 
-const CommentState = atom<restaurantTypes.menuCommentProps | userTypes.myCommentProps | null>({
+const CommentState = atom<
+  restaurantTypes.menuCommentProps | userTypes.myCommentProps | null
+>({
   key: "COMMENT",
   default: null,
 });
