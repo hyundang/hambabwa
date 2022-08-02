@@ -1,4 +1,6 @@
-const getCategoryRes = [
+import { categoryTypes } from "src/types";
+
+const getCategoryRes: categoryTypes.getCategoryResProps[] = [
   {
     code: "01",
     title: "밥류",

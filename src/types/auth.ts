@@ -10,12 +10,12 @@ namespace authTypes {
 
   export interface postSignUpResProps {
     email: string;
-    password: string;
+    // password: string;
     nickname: string;
     currentHashedRefreshToken: string;
     id: number;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
   }
 
   export interface postSignInReqProps {

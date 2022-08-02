@@ -1,4 +1,6 @@
-const getMyComment = {
+import { userTypes } from "src/types";
+
+const getMyComment: userTypes.myCommentProps = {
   id: 10,
   createdAt: "2022-07-29T02:24:10.853Z",
   updatedAt: "2022-07-29T02:24:10.853Z",
@@ -21,7 +23,7 @@ const getMyComment = {
   },
 };
 
-const getMyComment_long = {
+const getMyComment_long: userTypes.myCommentProps = {
   id: 10,
   createdAt: "2022-07-29T02:24:10.853Z",
   updatedAt: "2022-07-29T02:24:10.853Z",
@@ -45,7 +47,7 @@ const getMyComment_long = {
   },
 };
 
-const getMyComments = [
+const getMyComments: userTypes.myCommentProps[] = [
   getMyComment,
   getMyComment_long,
   getMyComment,

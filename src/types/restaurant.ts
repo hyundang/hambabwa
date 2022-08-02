@@ -3,7 +3,7 @@ import menuTypes from "./menu";
 import userTypes from "./user";
 
 namespace restaurantTypes {
-  export interface defaultRestaurntProps {
+  export interface restaurantInfoProps {
     id: number;
     createdAt: string;
     updatedAt: string;
@@ -16,6 +16,8 @@ namespace restaurantTypes {
     lng: number;
     imageUrl: string;
     lunchPrice: number;
+  }
+  export interface defaultRestaurntProps extends restaurantInfoProps {
     menus: menuTypes.menuDetailProps[];
   }
 

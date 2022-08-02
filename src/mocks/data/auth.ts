@@ -1,4 +1,6 @@
-const postRefreshRes = {
+import { authTypes } from "src/types";
+
+const postRefreshRes:authTypes.postSignUpResProps = {
   id: 3,
   createdAt: "2022-07-20T11:45:07.482Z",
   updatedAt: "2022-07-20T18:07:25.000Z",

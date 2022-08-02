@@ -21,7 +21,7 @@ namespace userTypes {
     favorites: menuTypes.menuItemProps[];
   }
   export interface myCommentProps extends restaurantTypes.defaultCommentProps {
-    restaurant: restaurantTypes.defaultRestaurntProps;
+    restaurant: restaurantTypes.restaurantInfoProps;
   }
   export interface getMyCommentsResProps extends userProps {
     comments: myCommentProps[];
