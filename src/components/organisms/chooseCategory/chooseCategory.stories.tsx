@@ -30,7 +30,7 @@ const Template: ComponentStory<typeof ChooseCategory> = (args) => {
     <ChooseCategory
       {...args}
       categoryList={categoryData.getCategoryRes}
-      menuList={menuData.getMenuRes}
+      menuList={menuData.getMenuByCategory}
       selectedCategory={category}
       setSelectedCategory={setCategory}
       selectedMenus={menu}

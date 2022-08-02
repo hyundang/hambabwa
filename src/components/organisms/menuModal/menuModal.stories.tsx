@@ -27,7 +27,7 @@ const Template: ComponentStory<typeof MenuMoal> = (args) => {
   return (
     <MenuMoal
       {...args}
-      menuList={menuData.getMenuRes}
+      menuList={menuData.getMenuByCategory}
       selected={selected}
       onSelectMenu={handleSelect}
     />

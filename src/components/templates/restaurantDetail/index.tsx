@@ -35,7 +35,7 @@ const RestaurantDetail = ({
 
   const [isScrollActive, setIsScrollActive] = useState(false);
   const handleScroll = () => {
-    if (window.scrollY > 180) setIsScrollActive(true);
+    if (window.scrollY > 170) setIsScrollActive(true);
     else setIsScrollActive(false);
   };
   useEffect(() => {
@@ -52,7 +52,7 @@ const RestaurantDetail = ({
         title={isScrollActive ? restaurantInfo.name : ""}
         isScrollActive={isScrollActive}
       >
-        <Header.ProfileImg imageUrl={imageUrl} />
+        {/* <Header.ProfileImg imageUrl={imageUrl} /> */}
       </StyledHeader>
       <ProfileWrap src={restaurantInfo.imageUrl}>
         <div className="profile">
@@ -144,7 +144,7 @@ const StyledHeader = styled(Header)<HeaderProps>`
   z-index: 2;
   top: 0;
   left: 0;
-  padding: 50px 23px 0 27px;
+  padding: 50px 23px 30px 27px;
   box-shadow: none;
   ${({ isScrollActive }) =>
     isScrollActive

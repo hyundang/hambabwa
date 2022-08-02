@@ -31,7 +31,7 @@ const Template: ComponentStory<typeof Profile> = (args) => {
     <Profile
       {...args}
       categoryList={categoryData.getCategoryRes}
-      menuList={menuData.getMenuRes}
+      menuList={menuData.getMenuByCategory}
       selectedCategory={category}
       setSelectedCategory={setCategory}
       selectedMenus={menu}

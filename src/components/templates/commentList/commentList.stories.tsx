@@ -16,7 +16,7 @@ export default {
 const DefaultTemplate: ComponentStory<typeof CommentList> = (args) => (
   <CommentList {...args}>
     <CommentList.TotalScore totalScore={4.5} />
-    <CommentList.DefaultComments nickname="" />
+    <CommentList.DefaultComments email="" />
   </CommentList>
 );
 export const DefaultCommentList = DefaultTemplate.bind({});
@@ -27,7 +27,7 @@ DefaultCommentList.args = {
 const DetailTemplate: ComponentStory<typeof CommentList> = (args) => (
   <CommentList {...args}>
     <CommentList.TotalScore totalScore={4.5} displayTotalCount />
-    <CommentList.DefaultComments nickname="김지원" />
+    <CommentList.DefaultComments email="test@hambabwa.kr" />
   </CommentList>
 );
 export const CommentListWithTotalCount = DetailTemplate.bind({});
