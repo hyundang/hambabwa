@@ -1,24 +1,43 @@
 import { GetServerSideProps } from "next";
-import { useRecoilValue } from "recoil";
 import { restaurantApi } from "src/apis";
-import { CommentDetail } from "src/components/templates";
-import states from "src/modules/states";
+import { CommentDetail, Loading } from "src/components/templates";
 import nextCookies from "next-cookies";
 import { useToastMsg } from "src/hooks";
 import { ToastMsg } from "src/components/molecules";
+import { useRouter } from "next/router";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
 interface CommentDetailPageProps {
   email: string;
 }
 const CommentDetailPage = ({ email }: CommentDetailPageProps) => {
-  const restaurantInfo = useRecoilValue(states.RestaurantInfoState);
+  const router = useRouter();
+  const {
+    isLoading,
+    isError,
+    data: restaurantInfo,
+  } = useQuery("restaurantInfo", () =>
+    restaurantApi.getRestaurantById(`${router.query.id}`)
+  );
 
   const { isToastMsgActive, handleToastMsg } = useToastMsg("deleteComment");
+  const queryClient = useQueryClient();
+  const commentMutation = useMutation(restaurantApi.deleteComment, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("restaurantInfo");
+    },
+  });
   const handleClickDelete = async (cid: number) => {
-    await restaurantApi.deleteComment(cid);
+    commentMutation.mutate(cid);
     handleToastMsg(true);
   };
 
+  if (isLoading) {
+    return <Loading />;
+  }
+  if (isError) {
+    throw new Error("error");
+  }
   return (
     <>
       <CommentDetail
