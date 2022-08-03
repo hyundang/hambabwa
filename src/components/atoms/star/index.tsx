@@ -10,6 +10,7 @@ interface StarProps {
   onChange?: (value: number) => void;
   isGray?: boolean;
   isRed?: boolean;
+  precision?: number;
 }
 const Star = ({
   defaultValue,
@@ -18,6 +19,7 @@ const Star = ({
   onChange,
   isGray = false,
   isRed = false,
+  precision = 0.5,
 }: StarProps) => {
   const handleChange = (
     event: SyntheticEvent<Element, Event>,
@@ -30,7 +32,8 @@ const Star = ({
       name="star"
       readOnly={readOnly}
       defaultValue={defaultValue !== null ? defaultValue : 0}
-      precision={0.5}
+      value={defaultValue !== null ? defaultValue : 0}
+      precision={precision}
       icon={
         isRed ? (
           <RedStarIcon
