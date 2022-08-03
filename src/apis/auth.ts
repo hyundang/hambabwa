@@ -1,4 +1,4 @@
-import { authTypes } from "src/types";
+import { authTypes, userTypes } from "src/types";
 import axios from "axios";
 import { apiRequest } from "src/utils";
 
@@ -7,12 +7,13 @@ export const auth = axios.create({
   withCredentials: true,
 });
 
-const getRefresh = async (): Promise<void> => {
-  await apiRequest({
+const getRefresh = async (): Promise<userTypes.postProfileListResProps> => {
+  const data = await apiRequest({
     axios: auth,
     url: `/auth/refresh`,
     type: "get",
   });
+  return data;
 };
 
 const postSignUp = async (

@@ -8,7 +8,6 @@ import { auth } from "src/apis/auth";
 import { selectedMenuProps } from "src/components/organisms/chooseCategory";
 import { Profile } from "src/components/templates";
 import { categoryTypes, menuTypes } from "src/types";
-import { saveDataInCookie } from "src/utils";
 
 interface ProfilePageProps {
   categoryList: categoryTypes.getCategoryResProps[];
@@ -43,7 +42,6 @@ const ProfilePage = ({ categoryList }: ProfilePageProps) => {
       body = [...body, ...menu.menuCodes];
     });
     await userApi.postProfileList({ menuIds: body.join(",") });
-    saveDataInCookie("isProfileWritten", true);
     router.replace("/map");
   };
 

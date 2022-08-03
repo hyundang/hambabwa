@@ -19,11 +19,14 @@ const SignInPage = () => {
       saveDataInCookie("nickname", data.nickname);
       saveDataInCookie("imageUrl", data.imageUrl);
       saveDataInCookie("email", data.email);
+
+      if (data.favorites.length === 0) router.replace("/profile");
     } catch (e) {
       handleToastMsg(true);
       return;
     }
-    router.replace("/profile");
+
+    router.replace("/map");
   };
 
   return (
@@ -43,14 +46,22 @@ export default SignInPage;
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const allCookies = nextCookie(ctx);
-  const { isProfileWritten, Refresh } = allCookies;
+  const { Refresh } = allCookies;
 
   if (Refresh) {
     try {
       if (ctx.req.headers.cookie)
         auth.defaults.headers.common.Cookie = ctx.req.headers.cookie;
 
-      await authApi.getRefresh();
+      const data = await authApi.getRefresh();
+      // 음식 선호 작성 안했을 때
+      if (data.favorites.length === 0)
+        return {
+          redirect: {
+            destination: "/profile",
+            permanent: false,
+          },
+        };
     } catch (e) {
       // 로그인 풀렸을 때
       auth.defaults.headers.common.Cookie = "";
@@ -58,18 +69,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         props: {},
       };
     }
+
     // 음식 선호 작성 했을 때
-    if (isProfileWritten)
-      return {
-        redirect: {
-          destination: "/map",
-          permanent: false,
-        },
-      };
-    // 음식 선호 작성 안했을 때
     return {
       redirect: {
-        destination: "/profile",
+        destination: "/map",
         permanent: false,
       },
     };
