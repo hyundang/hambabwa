@@ -1,5 +1,5 @@
 import { GetServerSideProps } from "next";
-import { RestaurantMap } from "src/components/templates";
+import { Loading, RestaurantMap } from "src/components/templates";
 import { useToastMsg } from "src/hooks";
 import nextCookies from "next-cookies";
 import { useQuery } from "react-query";
@@ -18,7 +18,7 @@ const MapPage = ({ imageUrl }: MapPageProps) => {
 
   const { isToastMsgActive, handleToastMsg } = useToastMsg("copyToClipboard");
 
-  if (isLoading) return <div>...loading</div>;
+  if (isLoading) return <Loading />;
   if (isError) throw new Error("error");
   if (restaurants)
     return (

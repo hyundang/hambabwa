@@ -20,3 +20,4 @@ export { default as cameraIcon } from "./icn_camera.svg";
 export { default as closeIcon } from "./icn_close.svg";
 export { default as editIcon } from "./icn_edit.svg";
 export { ReactComponent as BackIcon } from "./icn_back.svg";
+export { default as loadingIcon } from "./icn_loading.svg";

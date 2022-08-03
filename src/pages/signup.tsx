@@ -1,12 +1,14 @@
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { authApi } from "src/apis";
 import { ToastMsg } from "src/components/molecules";
-import { SignUp } from "src/components/templates";
+import { Loading, SignUp } from "src/components/templates";
 import { useToastMsg } from "src/hooks";
 import { authTypes } from "src/types";
 
 const SignUpPage = () => {
   const { isToastMsgActive, handleToastMsg } = useToastMsg("signupError");
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
   const handleSignUp = async (
@@ -14,6 +16,7 @@ const SignUpPage = () => {
   ) => {
     if ("nickname" in params) {
       try {
+        setLoading(true);
         await authApi.postSignUp(params);
       } catch (e) {
         handleToastMsg(true);
@@ -22,6 +25,8 @@ const SignUpPage = () => {
       router.replace("/");
     }
   };
+
+  if (loading) return <Loading />;
 
   return (
     <>

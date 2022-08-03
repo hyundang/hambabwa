@@ -11,3 +11,4 @@ export { default as AddComment } from "./addComment";
 export { default as MyComments } from "./myComments";
 export { default as MyPage } from "./mypage";
 export { default as RestaurantMap } from "./restaurantMap";
+export { default as Loading } from "./loading";

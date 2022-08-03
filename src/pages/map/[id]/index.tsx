@@ -1,5 +1,5 @@
 import { GetServerSideProps } from "next";
-import { RestaurantDetail } from "src/components/templates";
+import { Loading, RestaurantDetail } from "src/components/templates";
 import { restaurantApi, userApi } from "src/apis";
 import nextCookies from "next-cookies";
 import { useSetRecoilState } from "recoil";
@@ -53,7 +53,7 @@ const MapDetail = ({ nickname, email, imageUrl }: MapDetailProps) => {
   const setScore = useSetRecoilState(states.CommentScoreState);
 
   if (isLoading) {
-    return <span>Loading...</span>;
+    return <Loading />;
   }
   if (isError) {
     throw new Error("error");

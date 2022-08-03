@@ -1,6 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { restaurantApi, userApi } from "src/apis";
 import { ToastMsg } from "src/components/molecules";
+import { Loading } from "src/components/templates";
 import MyComments from "src/components/templates/myComments";
 import { useToastMsg } from "src/hooks";
 
@@ -24,7 +25,7 @@ const MyCommentPage = () => {
   };
 
   if (isLoading) {
-    return <span>Loading...</span>;
+    return <Loading />;
   }
   if (isError) {
     throw new Error("error");
