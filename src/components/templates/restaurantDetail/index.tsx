@@ -51,9 +51,7 @@ const RestaurantDetail = ({
         isBackActive
         title={isScrollActive ? restaurantInfo.name : ""}
         isScrollActive={isScrollActive}
-      >
-        {/* <Header.ProfileImg imageUrl={imageUrl} /> */}
-      </StyledHeader>
+      />
       <ProfileWrap src={restaurantInfo.imageUrl}>
         <div className="profile">
           <p className="name">{restaurantInfo.name}</p>

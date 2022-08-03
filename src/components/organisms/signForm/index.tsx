@@ -211,6 +211,7 @@ const StyledInputForm = styled(InputForm)`
   font-size: 15px;
   .input {
     font-size: 15px;
+    height: 30px;
   }
 `;
 

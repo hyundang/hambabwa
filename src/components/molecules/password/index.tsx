@@ -1,5 +1,5 @@
 import { InputHTMLAttributes, useState } from "react";
-import { Input } from "src/components/atoms";
+import { Icon, Input } from "src/components/atoms";
 import styled from "styled-components";
 import { hideIcon, viewIcon } from "src/assets";
 
@@ -12,7 +12,7 @@ const Password = ({
   onChange,
   value,
 }: InputHTMLAttributes<HTMLInputElement>) => {
-  const [type, setType] = useState("password");
+  const [type, setType] = useState<"password" | "text">("password");
 
   const handleClickIcon = () =>
     setType((t) => (t === "password" ? "text" : "password"));
@@ -27,7 +27,7 @@ const Password = ({
         onChange={onChange}
         value={value}
       />
-      <i className="eye_icon" onClick={handleClickIcon} />
+      <StyledIcon iconType={type} onClick={handleClickIcon} />
     </PasswordWrap>
   );
 };
@@ -44,14 +44,17 @@ const PasswordWrap = styled.div<InputHTMLAttributes<HTMLInputElement>>`
   .input {
     padding: 4px 31px 4px 4px;
   }
+`;
 
-  .eye_icon {
-    width: 19px;
-    height: 19px;
-    position: absolute;
-    z-index: 2;
-    margin-right: 8px;
-    background: ${({ type }) =>
-      type === "password" ? `url("${hideIcon}")` : `url("${viewIcon}")`};
-  }
+interface IconProps {
+  iconType: "password" | "text";
+}
+const StyledIcon = styled(Icon)<IconProps>`
+  width: 19px;
+  height: 19px;
+  position: absolute;
+  z-index: 2;
+  margin-right: 8px;
+  background: ${({ iconType }) =>
+    iconType === "password" ? `url("${hideIcon}")` : `url("${viewIcon}")`};
 `;
