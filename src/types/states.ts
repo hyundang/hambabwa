@@ -3,6 +3,8 @@ namespace statesTypes {
     signinError: boolean;
     signupError: boolean;
     copyToClipboard: boolean;
+    deleteComment: boolean;
+    editProfile: boolean;
   }
 }
 

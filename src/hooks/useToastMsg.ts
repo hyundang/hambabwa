@@ -2,7 +2,12 @@ import { useRecoilState } from "recoil";
 import states from "src/modules/states";
 
 const useToastMsg = (
-  key: "signupError" | "signinError" | "copyToClipboard"
+  key:
+    | "signupError"
+    | "signinError"
+    | "copyToClipboard"
+    | "deleteComment"
+    | "editProfile"
 ) => {
   const [isToastMsgActive, setIsToastMsgActive] = useRecoilState(
     states.ToastMsgState

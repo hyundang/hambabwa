@@ -4,6 +4,8 @@ import nextCookies from "next-cookies";
 import { useState } from "react";
 import { userApi } from "src/apis";
 import { saveDataInCookie } from "src/utils";
+import { useToastMsg } from "src/hooks";
+import { ToastMsg } from "src/components/molecules";
 
 interface MyPageProps {
   initNickname: string;
@@ -13,6 +15,7 @@ const MyPage = ({ initNickname, initImageUrl }: MyPageProps) => {
   const [imageUrl, setImageUrl] = useState(initImageUrl);
   const [nickname, setNickname] = useState(initNickname);
 
+  const { isToastMsgActive, handleToastMsg } = useToastMsg("editProfile");
   const handleClickEdit = async (newNickname: string, file?: File) => {
     if (file) {
       const data = await userApi.postMyProfile({
@@ -23,15 +26,23 @@ const MyPage = ({ initNickname, initImageUrl }: MyPageProps) => {
       setNickname(data.nickname);
       saveDataInCookie("imageUrl", data.imageUrl);
       setImageUrl(data.imageUrl);
+      handleToastMsg(true);
     }
   };
 
   return (
-    <MyPageTemplate
-      nickname={nickname}
-      imageUrl={imageUrl}
-      onClickEdit={handleClickEdit}
-    />
+    <>
+      <MyPageTemplate
+        nickname={nickname}
+        imageUrl={imageUrl}
+        onClickEdit={handleClickEdit}
+      />
+      <ToastMsg
+        isActive={isToastMsgActive.editProfile}
+        setIsActive={handleToastMsg}
+        text="😀 프로필을 수정했어요!"
+      />
+    </>
   );
 };
 

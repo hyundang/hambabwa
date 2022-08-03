@@ -7,6 +7,8 @@ const ToastMsgState = atom<statesTypes.ToastMsgStateProps>({
     signinError: false,
     signupError: false,
     copyToClipboard: false,
+    deleteComment: false,
+    editProfile: false,
   },
 });
 

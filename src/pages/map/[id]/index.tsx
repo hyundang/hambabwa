@@ -6,6 +6,8 @@ import { useSetRecoilState } from "recoil";
 import states from "src/modules/states";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useRouter } from "next/router";
+import { useToastMsg } from "src/hooks";
+import { ToastMsg } from "src/components/molecules";
 
 interface MapDetailProps {
   nickname: string;
@@ -37,6 +39,7 @@ const MapDetail = ({ nickname, email, imageUrl }: MapDetailProps) => {
     profileMutation.mutate(menuId);
   };
 
+  const { isToastMsgActive, handleToastMsg } = useToastMsg("deleteComment");
   const commentMutation = useMutation(restaurantApi.deleteComment, {
     onSuccess: () => {
       queryClient.invalidateQueries("restaurantInfo");
@@ -44,6 +47,7 @@ const MapDetail = ({ nickname, email, imageUrl }: MapDetailProps) => {
   });
   const handleClickDelete = async (cid: number) => {
     commentMutation.mutate(cid);
+    handleToastMsg(true);
   };
 
   const setScore = useSetRecoilState(states.CommentScoreState);
@@ -56,15 +60,22 @@ const MapDetail = ({ nickname, email, imageUrl }: MapDetailProps) => {
   }
   if (restaurantInfo)
     return (
-      <RestaurantDetail
-        restaurantInfo={restaurantInfo}
-        nickname={nickname}
-        email={email}
-        imageUrl={imageUrl}
-        onLikeMenu={handleLikeMenu}
-        onChangeScore={setScore}
-        onClickCommentDelete={handleClickDelete}
-      />
+      <>
+        <RestaurantDetail
+          restaurantInfo={restaurantInfo}
+          nickname={nickname}
+          email={email}
+          imageUrl={imageUrl}
+          onLikeMenu={handleLikeMenu}
+          onChangeScore={setScore}
+          onClickCommentDelete={handleClickDelete}
+        />
+        <ToastMsg
+          isActive={isToastMsgActive.deleteComment}
+          setIsActive={handleToastMsg}
+          text="❌ 후기를 삭제했어요!"
+        />
+      </>
     );
 };
 
