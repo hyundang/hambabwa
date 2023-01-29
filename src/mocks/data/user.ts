@@ -1,5 +1,16 @@
 import { userTypes } from "src/types";
 
+const getUserProfile: userTypes.userProps = {
+  id: 1,
+  createdAt: "2022-07-20T11:45:07.482Z",
+  updatedAt: "2022-07-20T18:07:25.000Z",
+  email: "test@email.com",
+  nickname: "함바",
+  role: "user",
+  imageUrl:
+    "https://thumbnail6.coupangcdn.com/thumbnails/remote/492x492ex/image/rs_quotation_api/uh5t2hha/0e8d4ee6af1a4d47812f0d18a93b58d7.jpg",
+};
+
 const getMyComment: userTypes.myCommentProps = {
   id: 10,
   createdAt: "2022-07-29T02:24:10.853Z",
@@ -17,8 +28,7 @@ const getMyComment: userTypes.myCommentProps = {
     addr2: "비트빌빌딩 1층",
     lat: 37.4946203470469,
     lng: 127.027606136235,
-    imageUrl:
-      "https://image.hambabwa.kr/prod/restaurant/b971effe-e538-4703-b1af-a7b2131cb752.png",
+    imageUrl: "https://image.hambabwa.kr/prod/restaurant/b971effe-e538-4703-b1af-a7b2131cb752.png",
     lunchPrice: 8000,
   },
 };
@@ -41,8 +51,7 @@ const getMyComment_long: userTypes.myCommentProps = {
     addr2: "비트빌빌딩 1층",
     lat: 37.4946203470469,
     lng: 127.027606136235,
-    imageUrl:
-      "https://image.hambabwa.kr/prod/restaurant/b971effe-e538-4703-b1af-a7b2131cb752.png",
+    imageUrl: "https://image.hambabwa.kr/prod/restaurant/b971effe-e538-4703-b1af-a7b2131cb752.png",
     lunchPrice: 8000,
   },
 };
@@ -55,6 +64,7 @@ const getMyComments: userTypes.myCommentProps[] = [
 ];
 
 const userData = {
+  getUserProfile,
   getMyComment,
   getMyComments,
 };

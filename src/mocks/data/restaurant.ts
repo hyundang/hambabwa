@@ -5,14 +5,12 @@ const getComment: restaurantTypes.menuCommentProps = {
   id: 1,
   createdAt: "2022-07-27T05:35:03.693Z",
   updatedAt: "2022-07-27T05:35:03.693Z",
-  comment:
-    "흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥",
+  comment: "흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥",
   stars: 4.5,
   writer: {
     email: "test@hambabwa.kr",
     nickname: "김지원",
-    imageUrl:
-      "https://image.hambabwa.kr/prod/restaurant/b971effe-e538-4703-b1af-a7b2131cb752.png",
+    imageUrl: "https://image.hambabwa.kr/prod/restaurant/b971effe-e538-4703-b1af-a7b2131cb752.png",
   },
 };
 const getComment_long: restaurantTypes.menuCommentProps = {
@@ -25,8 +23,7 @@ const getComment_long: restaurantTypes.menuCommentProps = {
   writer: {
     email: "test@hambabwa.kr",
     nickname: "김지원",
-    imageUrl:
-      "https://image.hambabwa.kr/prod/restaurant/b971effe-e538-4703-b1af-a7b2131cb752.png",
+    imageUrl: "https://image.hambabwa.kr/prod/restaurant/b971effe-e538-4703-b1af-a7b2131cb752.png",
   },
 };
 const getComment_short: restaurantTypes.menuCommentProps = {
@@ -38,8 +35,7 @@ const getComment_short: restaurantTypes.menuCommentProps = {
   writer: {
     email: "test@hambabwa.kr",
     nickname: "김지원",
-    imageUrl:
-      "https://image.hambabwa.kr/prod/restaurant/b971effe-e538-4703-b1af-a7b2131cb752.png",
+    imageUrl: "https://image.hambabwa.kr/prod/restaurant/b971effe-e538-4703-b1af-a7b2131cb752.png",
   },
 };
 
@@ -47,6 +43,31 @@ const getComments: restaurantTypes.menuCommentProps[] = [
   getComment,
   getComment_short,
   getComment_long,
+];
+
+const getPostComment: restaurantTypes.postCommentResProps = {
+  id: 1,
+  createdAt: "2022-07-27T05:35:03.693Z",
+  updatedAt: "2022-07-27T05:35:03.693Z",
+  comment: "흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥흥해라흥",
+  stars: 4.5,
+  restaurant: {
+    id: 1,
+  },
+  writer: {
+    id: 1,
+    createdAt: "2022-07-20T11:45:07.482Z",
+    updatedAt: "2022-07-20T18:07:25.000Z",
+    role: "user",
+    email: "test@hambabwa.kr",
+    nickname: "김지원",
+    imageUrl: "https://image.hambabwa.kr/prod/restaurant/b971effe-e538-4703-b1af-a7b2131cb752.png",
+  },
+};
+const getPostCommentRes: restaurantTypes.postCommentResProps[] = [
+  getPostComment,
+  getPostComment,
+  getPostComment,
 ];
 
 const getDefaultRestaurant: restaurantTypes.defaultRestaurntProps = {
@@ -60,8 +81,7 @@ const getDefaultRestaurant: restaurantTypes.defaultRestaurntProps = {
   addr2: "비트빌빌딩 1층",
   lat: 37.4946203470469,
   lng: 127.027606136235,
-  imageUrl:
-    "https://image.hambabwa.kr/prod/restaurant/b971effe-e538-4703-b1af-a7b2131cb752.png",
+  imageUrl: "https://image.hambabwa.kr/prod/restaurant/b971effe-e538-4703-b1af-a7b2131cb752.png",
   lunchPrice: 8000,
   menus: menuData.getMenuDetails,
 };
@@ -92,14 +112,13 @@ const getRestaurant: restaurantTypes.restaurantProps = {
   hasCommented: false,
 };
 
-const getRestaurants: restaurantTypes.restaurantProps[] = [
-  getRestaurant,
-  getRestaurant,
-];
+const getRestaurants: restaurantTypes.restaurantProps[] = [getRestaurant, getRestaurant];
 
 const restaurantData = {
   getComment,
   getComments,
+  getPostComment,
+  getPostCommentRes,
   getRestaurant,
   getRestaurants,
   getDefaultRestaurant,

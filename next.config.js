@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["image.hambabwa.kr", "image.dongascience.com", "*"],
+    domains: ["image.hambabwa.kr", "image.dongascience.com", "thumbnail6.coupangcdn.com", "*"],
   },
   webpack(config, { webpack }) {
     config.module.rules.push({
