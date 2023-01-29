@@ -8,12 +8,10 @@ import { GetServerSideProps } from "next";
 import nextCookie from "next-cookies";
 
 const queryClient = new QueryClient();
-
+if (process.env.NODE_ENV === "development") {
+  require("src/mocks");
+}
 function MyApp({ Component, pageProps }: AppProps) {
-  // if (process.env.NODE_ENV === "development") {
-  //   import("src/mocks");
-  // }
-
   return (
     <>
       <Head>

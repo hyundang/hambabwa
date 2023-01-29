@@ -65,7 +65,8 @@
     "testing-library/no-debugging-utils": "warn",
     "testing-library/no-dom-import": "off",
     "@typescript-eslint/no-namespace": "off",
-    "consistent-return": "off"
+    "consistent-return": "off",
+    "global-require": "off"
   },
   "settings": {
     "react": {
